@@ -1,5 +1,5 @@
-import { Link, useLocation } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { NavLink } from "react-router-dom";
+import { useState } from "react";
 
 import Logo from "../../assets/images/logo-header.png";
 import NavLogo from "../../assets/images/logo-footer.svg";
@@ -13,36 +13,34 @@ const Header = () => {
     setActive(!active);
   };
 
-  const location = useLocation;
-
-  useEffect(() => {
+  const closeNav = () => {
     setActive(false);
-    console.log("it works!");
-  }, [location]);
+  };
 
   return (
     <header className={active ? "header header_active" : "header"}>
       <div className='header__container container'>
         <div className='header__inner'>
-          <Link className='header__logo' to='/'>
+          <NavLink className='header__logo' to='/'>
             <img src={Logo} alt='logo' />
-          </Link>
+          </NavLink>
           <div className='header__nav'>
             <ul className='header__nav-list'>
               <li className='header__nav-item'>
-                <Link to='/' className='header__nav-link'>
+                <NavLink className='header__nav-link' to='/' onClick={closeNav}>
                   <HomeIcon />
-                  <span>Home</span>
-                </Link>
+                  Home
+                </NavLink>
               </li>
               <li className='header__nav-item'>
-                <Link
+                <NavLink
+                  className='header__nav-link'
                   to='/pokedex'
-                  className='header__nav-link header__nav-link_active'
+                  onClick={closeNav}
                 >
                   <PokedexIcon />
-                  <span>Pokedex</span>
-                </Link>
+                  Pokedex
+                </NavLink>
               </li>
             </ul>
             <div className='header__nav-logo'>

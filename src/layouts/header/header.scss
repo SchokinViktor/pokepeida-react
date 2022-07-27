@@ -1,3 +1,5 @@
+@import './navOpener';
+
 .header {
   padding-top: 20px;
   position: fixed;
@@ -36,12 +38,20 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    @include xl {
+      padding: 0px 100px;
+    }
   }
 
   &__logo {
     width: 53px;
     height: 52px;
     display: block;
+
+    @include xl {
+      display: none;
+    }
   }
 
   &__nav {
@@ -53,27 +63,51 @@
     top: 0;
     left: 0;
     padding: 80px 50px;
-    transition: all 0.5s ease-in;
+    transition: all 0.4s ease-in;
     transform: translateY(-100%);
+
+    @include xl {
+      opacity: 1;
+      visibility: visible;
+      height: auto;
+      position: relative;
+      padding: 0;
+      transform: translate(0);
+    }
   }
 
   &__nav-list {
     text-align: center;
     margin-bottom: 200px;
+
+    @include xl {
+      text-align: left;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      margin: 0 -30px;
+      overflow: hidden;
+    }
   }
 
   &__nav-item {
     margin-bottom: 40px;
     position: relative;
+
+    @include xl {
+      margin: 0;
+      padding: 0 30px;
+      display: block;
+    }
   }
   
   &__link-icon {
-    position: absolute;
-    left: 15px;
-    top: 50%;
-    left: 2%;
-    transform: translateY(-50%);
     display: none;
+
+    @include xl {
+      display: inline-block;
+      margin-right: 13px;
+    }
   }
 
   &__nav-link {
@@ -82,26 +116,41 @@
     font-weight: 700;
     font-size: rem(28);
 
-    &_active {
-        color: $red-1;
-        border-bottom: $red-1 5px solid;
-
-        .header__link-icon path {
-            fill: $red-1;
-        }
-
-        .header__link-icon circle {
-          fill: $red-1;
-      }
+    @include xl {
+      font-size: rem(18);
+      display: flex;
+      align-items: center;
+      height: 100px;
+      padding-top: 10px;
+      border-bottom: transparent 5px solid;
     }
   }
+
+  &__nav-link.active {
+    color: $red-1;
+    border-bottom: $red-1 5px solid;
+
+    .header__link-icon path {
+        fill: $red-1;
+    }
+
+    .header__link-icon circle {
+      fill: $red-1;
+  }
+}
 
   &__nav-logo {
     width: 150px;
     margin: 0 auto;
+
+    @include xl {
+      display: none;
+    }
   }
 
   &__nav-opener {
-    right: 18px;
+    right: 7px;
   }
+  
 }
+

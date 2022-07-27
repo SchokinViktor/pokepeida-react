@@ -1,3 +1,4 @@
+
 .nav-opener {
   position: relative;
   width: 30px;
@@ -9,6 +10,7 @@
   &::after,
   span {
     position: absolute;
+    left: 0;
     content: "";
     height: 5px;
     width: 100%;
@@ -26,5 +28,9 @@
   & span {
     top: 50%;
     transform: translateY(-50%);
+  }
+
+  @include xl {
+    display: none;
   }
 }
