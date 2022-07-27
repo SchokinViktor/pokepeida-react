@@ -1,0 +1,36 @@
+.btn {
+  background: #d94745;
+  border-radius: $border-radius;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  outline-offset: 4px;
+  
+  span {
+    display: block;
+    padding: 16px 42px;
+    border-radius: $border-radius;
+    font-size: rem(18);
+    background: $red-1;
+    font-weight: 700;
+    color: white;
+    transform: translateY(-9px);
+    transition: transform 0.2s;
+  }
+}
+
+.btn:active span {
+  transform: translateY(-2px);
+}
+
+.btn:focus:not(:focus-visible) {
+  outline: none;
+}
+
+.btn:hover  span {
+  transform: translateY(-12px);
+}
+
+.btn:active span {
+  transform: translateY(-2px);
+}

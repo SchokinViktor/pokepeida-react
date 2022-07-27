@@ -1,0 +1,143 @@
+.pokedex-hero {
+  background-color: $yellow;
+  padding: 80px 0 55px;
+
+  @include xl {
+    background: linear-gradient(270deg, $body-color 35.94%, $yellow 35.95%);
+    padding: 120px 0;
+  }
+
+  &__container {
+    text-align: center;
+
+    @include xl {
+      position: relative;
+      text-align: left;
+      display: flex;
+      flex-direction: row-reverse;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+
+  &__col {
+  }
+
+  &__img-holder {
+    position: relative;
+    z-index: 1;
+    max-width: 290px;
+    margin: 0 auto 20px;
+
+    @include md {
+      max-width: 360px;
+      margin: 0 auto 50px;
+    }
+
+    @include xl {
+      max-width: 600px;
+      margin: 0;
+    }
+
+    @include xxl {
+      max-width: 700px;
+    }
+  }
+
+  &__icon-holder {
+    position: absolute;
+    z-index: -1;
+    left: 25px;
+    top: 35px;
+    max-width: 230px;
+    width: 100%;
+    animation: spin 4s linear infinite;
+
+    @include md {
+      max-width: 300px;
+    }
+
+    @include xl {
+      top: 150px;
+      left: 70px;
+      max-width: 400px;
+    }
+
+    @include xxl {
+      max-width: 500px;
+    }
+  }
+
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  &__text-holder {
+    @include xl {
+      padding-top: 100px;
+    }
+  }
+
+  &__title {
+    font-weight: 700;
+    font-size: rem(48);
+    color: $black-1;
+    margin-bottom: 25px;
+
+    & span {
+      color: $red-1;
+    }
+
+    @include md {
+      font-size: rem(58);
+    }
+
+    @include xl {
+      font-size: rem(74);
+      margin-bottom: 50px;
+    }
+
+    @include xxl {
+      font-size: rem(100);
+    }
+  }
+
+  &__text {
+    font-weight: 700;
+    font-size: rem(18);
+    color: $black-2;
+    max-width: 300px;
+    margin: 0 auto 45px;
+
+    @include md {
+      font-size: rem(24);
+      max-width: 400px;
+    }
+
+    @include xl {
+      font-size: rem(28);
+      max-width: 450px;
+      margin: 0 0 98px;
+    }
+
+    @include xxl {
+      font-size: rem(32);
+      max-width: 533px;
+    }
+  }
+
+  &__btn {
+    @include xl {
+      width: 312px;
+
+      span {
+        font-size: rem(24);
+      }
+    }
+  }
+}

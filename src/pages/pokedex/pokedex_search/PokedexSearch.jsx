@@ -1,9 +1,9 @@
 import React from 'react'
 
-const Pokedex = () => {
+const PokedexSearch = () => {
   return (
     <div></div>
   )
 }
 
-export default Pokedex
+export default PokedexSearch

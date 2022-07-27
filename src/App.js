@@ -3,8 +3,8 @@ import { Route, Routes } from "react-router-dom";
 
 import "./assets/styles/index.scss";
 import Layout from "./layouts/Layout";
-import Home from "./pages/Home";
-import Pokedex from "./pages/Pokedex";
+import Home from "./pages/home/Home";
+import Pokedex from "./pages/pokedex/Pokedex";
 
 const App = () => {
   return (
