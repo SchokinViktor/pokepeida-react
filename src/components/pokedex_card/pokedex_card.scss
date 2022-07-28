@@ -1,7 +1,8 @@
 .pokedex-card {
   position: relative;
   max-width: 340px;
-  padding: 60px 15px 30px;
+  width: 100%;
+  padding: 60px 15px 22px;
   background-color: #fff;
   border-radius: $border-radius;
   text-align: center;
@@ -13,10 +14,10 @@
   }
 
   &__card-img {
-    max-width: 120px;
+    max-width: 200px;
     position: absolute;
     left: 50%;
-    bottom: 195px;
+    bottom: 175px;
     transform: translateX(-50%);
   }
 
@@ -32,26 +33,33 @@
     font-size: rem(24);
     color: $black-1;
     margin-bottom: 26px;
+    text-transform: capitalize;
   }
 
   &__types-list {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: center;
   }
 
   &__type-item {
     padding: 0 5px;
+    margin-bottom: 5px;
   }
 
   &__type {
-    padding: 10px 20px;
+    padding: 5px 10px;
     background-color: $yellow;
     border-radius: $border-radius;
     text-transform: uppercase;
-    font-size: rem(18);
+    font-size: rem(14);
     font-weight: 600;
     color: $black-1;
     margin-bottom: 10px;
+
+    @include md {
+      padding: 10px 20px;
+      font-size: rem(18);
+    }
   }
 }

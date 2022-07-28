@@ -4,7 +4,7 @@
   &__cards-list {
     display: grid;
     justify-items: center;
-    grid-row-gap: 135px;
+    grid-row-gap: 170px;
 
     @include md {
         grid-template-columns: 2fr 2fr;
@@ -16,14 +16,16 @@
  
     @include xl {
         align-items: end;
-        grid-row-gap: 135px;
         align-items: center;
     }
   }
 
   &__card-item {
     padding: 0 10px;
-    
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
 
     &:last-child {
         margin-bottom: 0;
