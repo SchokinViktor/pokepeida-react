@@ -2,7 +2,8 @@
 $body-color: #F6F8FC; 
 $black-1: #444444;
 $black-2: #787D83;
-$grey: #787D83;
+$grey-1: #787D83;
+$grey-2: #CACAD3;
 
 $yellow: #FFDF34;
 $red-1: #FF5350;
@@ -18,6 +19,8 @@ $rubik: 'Rubik', sans-serif;
 
 //shadow
 $shadow: 0px 4px 23px rgba(68, 68, 68, 0.18);
+$shadow-red: 3px 1px 15px 1px #FF5350;
 
 //border-radius
 $border-radius: 15px;
+$border-radius-small : 8px;

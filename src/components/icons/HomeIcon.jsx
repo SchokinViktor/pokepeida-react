@@ -1,8 +1,8 @@
 import React from "react";
 
-const HomeIcon = () => {
+const HomeIcon = ({className = ''}) => {
   return (
-    <svg className="header__link-icon"
+    <svg className={className}
       width='54'
       height='52'
       viewBox='0 0 54 52'

@@ -28,7 +28,7 @@ const Header = () => {
             <ul className='header__nav-list'>
               <li className='header__nav-item'>
                 <NavLink className='header__nav-link' to='/' onClick={closeNav}>
-                  <HomeIcon />
+                  <HomeIcon className="header__link-icon" />
                   Home
                 </NavLink>
               </li>
@@ -38,7 +38,7 @@ const Header = () => {
                   to='/pokedex'
                   onClick={closeNav}
                 >
-                  <PokedexIcon />
+                  <PokedexIcon className = 'header__link-icon' />
                   Pokedex
                 </NavLink>
               </li>

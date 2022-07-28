@@ -1,0 +1,52 @@
+.search-input-holder {
+  max-width: 350px;
+  position: relative;
+
+  @include md {
+    max-width: 500px;
+  }
+
+  @include xl {
+    max-width: 800px;
+  }
+
+  input {
+    padding: 20px;
+    border-radius: $border-radius-small;
+    border: none;
+    box-shadow: $shadow;
+    font-size: rem(16);
+    font-weight: 500;
+    width: 100%;
+    transition: all 0.1s;
+    &:focus {
+      outline: 2px solid $red-1;
+      color: $black-1;
+    }
+
+    &::placeholder {
+      color: $grey-2;
+    }
+
+    @include xl {
+      padding: 25px 40px;
+      border-radius: $border-radius;
+      font-size: rem(20);
+    }
+
+    @include xxl {
+      font-size: rem(28);
+    }
+  }
+
+  &__button {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+
+    @include xl {
+      right: 35px;
+    }
+  }
+}

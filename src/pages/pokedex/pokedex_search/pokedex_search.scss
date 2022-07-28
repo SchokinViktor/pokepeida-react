@@ -1,0 +1,11 @@
+.pokedex-search {
+    padding: 50px 0 ;
+
+    @include xl {
+        padding: 126px 0 ;
+    }
+
+    &__input {
+        margin: 0 auto;
+    }
+}

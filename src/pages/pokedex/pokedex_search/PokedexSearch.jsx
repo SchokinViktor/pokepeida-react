@@ -1,9 +1,17 @@
-import React from 'react'
+import React from "react";
+import SearchInput from "../../../components/search_input/SearchInput";
 
-const PokedexSearch = () => {
+const PokedexSearch = ({ className = "" }) => {
   return (
-    <div></div>
-  )
-}
+    <section className='pokedex-search'>
+      <div className='container'>
+        <SearchInput
+          className='pokedex-search__input'
+          placeholder='Search for Pokemon!'
+        />
+      </div>
+    </section>
+  );
+};
 
-export default PokedexSearch
+export default PokedexSearch;

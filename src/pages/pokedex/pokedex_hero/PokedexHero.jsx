@@ -2,7 +2,7 @@ import React from "react";
 
 import PokedexHeroImage from "../../../assets/images/pikachu-hero.png";
 import PokedexHeroIcon from "../../../assets/images/pokeball-icon-hero.svg";
-import ThreeDButton from "../../../components/buttons/ThreeDButton";
+import ThreeDButton from "../../../components/buttons/three_d_button/ThreeDButton";
 
 const PokedexHero = () => {
   return (
@@ -26,7 +26,7 @@ const PokedexHero = () => {
               The best tool for finding pokemon you are interested in!
             </p>
             <ThreeDButton
-              text='Explore Pokedex!'
+              buttonText='Explore Pokedex!'
               className='pokedex-hero__btn'
             ></ThreeDButton>
           </div>
