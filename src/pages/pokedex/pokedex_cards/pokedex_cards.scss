@@ -1,0 +1,33 @@
+.pokedex-cards {
+  padding: 85px 0;
+
+  &__cards-list {
+    display: grid;
+    justify-items: center;
+    grid-row-gap: 135px;
+
+    @include md {
+        grid-template-columns: 2fr 2fr;
+    }
+
+    @include lg {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+ 
+    @include xl {
+        align-items: end;
+        grid-row-gap: 135px;
+        align-items: center;
+    }
+  }
+
+  &__card-item {
+    padding: 0 10px;
+    
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+  }
+
+}

@@ -1,0 +1,57 @@
+.pokedex-card {
+  position: relative;
+  max-width: 340px;
+  padding: 60px 15px 30px;
+  background-color: #fff;
+  border-radius: $border-radius;
+  text-align: center;
+  box-shadow: $shadow;
+  transition: all 0.1s ease-in-out;
+  cursor: pointer;
+  &:hover {
+    box-shadow: $shadow-red;
+  }
+
+  &__card-img {
+    max-width: 120px;
+    position: absolute;
+    left: 50%;
+    bottom: 195px;
+    transform: translateX(-50%);
+  }
+
+  &__card-number {
+    font-weight: 700;
+    font-size: rem(18);
+    color: $grey-1;
+    margin-bottom: 20px;
+  }
+
+  &__card-name {
+    font-weight: 700;
+    font-size: rem(24);
+    color: $black-1;
+    margin-bottom: 26px;
+  }
+
+  &__types-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+
+  &__type-item {
+    padding: 0 5px;
+  }
+
+  &__type {
+    padding: 10px 20px;
+    background-color: $yellow;
+    border-radius: $border-radius;
+    text-transform: uppercase;
+    font-size: rem(18);
+    font-weight: 600;
+    color: $black-1;
+    margin-bottom: 10px;
+  }
+}
