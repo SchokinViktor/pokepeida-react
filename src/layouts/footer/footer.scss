@@ -1,0 +1,19 @@
+.footer {
+    background-color: $yellow;
+    padding: 45px 0;
+
+  &__img-holder {
+    max-width: 165px;
+    margin: 0 auto 40px;
+  }
+
+  &__social-media-list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__social-media-item {
+    padding: 0 20px;
+  }
+}

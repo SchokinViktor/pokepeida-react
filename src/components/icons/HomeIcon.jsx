@@ -1,6 +1,6 @@
 import React from "react";
 
-const HomeIcon = ({className = ''}) => {
+const HomeIcon = ({className = '', color = ''}) => {
   return (
     <svg className={className}
       width='54'
