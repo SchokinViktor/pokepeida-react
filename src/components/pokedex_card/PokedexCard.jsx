@@ -1,9 +1,8 @@
 import React from "react";
 
 import { addAdditionalClass } from "../../utils/addAdditionalClass.js";
-import PikachuPlaceholder from "../../assets/images/pikachu-placeholder.png";
 
-const PokedexCard = ({ className = "", pokemon }) => {
+const PokemonCard = ({ className = "", pokemon }) => {
   return (
     <div className={addAdditionalClass(className, "pokedex-card")}>
       <div className='pokedex-card__card-img'>
@@ -20,15 +19,9 @@ const PokedexCard = ({ className = "", pokemon }) => {
             </li>
           );
         })}
-        {/* <li className='pokedex-card__type-item'>
-          <div className='pokedex-card__type'>Lightning</div>
-        </li>
-        <li className='pokedex-card__type-item'>
-          <div className='pokedex-card__type'>Grass</div>
-        </li> */}
       </ul>
     </div>
   );
 };
 
-export default PokedexCard;
+export default PokemonCard;
