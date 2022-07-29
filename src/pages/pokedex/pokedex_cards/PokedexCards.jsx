@@ -8,7 +8,7 @@ import PokemonsList from "./PokemonsList";
 
 
 const PokedexCards = ({ pokemonData, setPokemonData }) => {
-  // const [loading, setLoading] = useState(true);
+  const [isLoading, setLoading] = useState(true);
 
   const [url, setUrl] = useState(
     `https://pokeapi.co/api/v2/pokemon/?limit=151`
@@ -38,11 +38,11 @@ const PokedexCards = ({ pokemonData, setPokemonData }) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      // setLoading(true);
+      setLoading(true);
       const response = await axios.get(url);
       console.log(response.data);
       getPokemons(response.data.results);
-      // setLoading(false);
+      setLoading(false);
     };
     fetchData();
   }, []);
@@ -50,7 +50,7 @@ const PokedexCards = ({ pokemonData, setPokemonData }) => {
   return (
     <section className='pokedex-cards'>
       <div className='container'>
-        <PokemonsList pokemonData={currentPokemons} />
+        <PokemonsList pokemonData={currentPokemons} isLoading = {isLoading} />
         {/* <ul className='pokedex-cards__cards-list'>
           {currentPokemons.map((item, i) => {
             return (
@@ -68,7 +68,7 @@ const PokedexCards = ({ pokemonData, setPokemonData }) => {
           currentPage={currentPage}
           buttons={true}
         />
-        
+
        
       </div>
     </section>
