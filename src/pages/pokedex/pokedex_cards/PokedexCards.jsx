@@ -1,38 +1,35 @@
 import React from "react";
-import { useEffect, useState } from "react";
-import axios from "axios";
+import { useEffect, useState, useContext } from "react";
 import ReactPaginate from "react-paginate";
 
 import PokemonsList from "./PokemonsList";
+import searchForPokemons from "../../../utils/getPokemons";
+import fetchData from "../../../utils/fetchData";
+import { Context } from "../context";
 
-const PokedexCards = ({ pokemonData, setPokemonData }) => {
+const PokedexCards = () => {
+  //using context
+  const { pokemonData, setPokemonData, inputValue } = useContext(Context);
+
   //Fetching Pokemons
   const [isLoading, setLoading] = useState(true);
-  const url = `https://pokeapi.co/api/v2/pokemon/?limit=151`;
 
-  const getPokemons = async (data) => {
-    data.map(async (item) => {
-      const result = await axios.get(item.url);
-      setPokemonData((state) => {
-        state = [...state, result.data];
-        state.sort((a, b) => (a.id > b.id ? 1 : -1));
-        return state;
-      });
-    });
-  };
-
-  const fetchData = async () => {
+  const renderPokemons = async () => {
     setLoading(true);
-    const response = await axios.get(url);
-    //console.log(response.data);
-    getPokemons(response.data.results);
+
+    setPokemonData([]);
+    const response = await fetchData(
+      `https://pokeapi.co/api/v2/pokemon/?limit=11`
+    );
+    searchForPokemons(response.data.results, setPokemonData, inputValue);
+
     setLoading(false);
   };
 
   useEffect(() => {
-    fetchData();
+    renderPokemons();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [inputValue]);
 
   //Pagination
   const [currentItems, setCurrentItems] = useState([]);
@@ -55,7 +52,6 @@ const PokedexCards = ({ pokemonData, setPokemonData }) => {
     <section className='pokedex-cards'>
       <div className='container'>
         <PokemonsList pokemonData={currentItems} isLoading={isLoading} />
-
         <ReactPaginate
           breakLabel='...'
           nextLabel='>'

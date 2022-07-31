@@ -1,7 +1,8 @@
 import React from "react";
+
 import SearchInput from "../../../components/search_input/SearchInput";
 
-const PokedexSearch = ({ className = "" }) => {
+const PokedexSearch = () => {
   return (
     <section className='pokedex-search'>
       <div className='container'>
