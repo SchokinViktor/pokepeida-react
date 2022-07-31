@@ -19,7 +19,7 @@ const PokedexCards = () => {
 
     setPokemonData([]);
     const response = await fetchData(
-      `https://pokeapi.co/api/v2/pokemon/?limit=11`
+      `https://pokeapi.co/api/v2/pokemon/?limit=151`
     );
     searchForPokemons(response.data.results, setPokemonData, inputValue);
 
@@ -50,27 +50,35 @@ const PokedexCards = () => {
 
   return (
     <section className='pokedex-cards'>
-      <div className='container'>
-        <PokemonsList pokemonData={currentItems} isLoading={isLoading} />
-        <ReactPaginate
-          breakLabel='...'
-          nextLabel='>'
-          onPageChange={handlePageClick}
-          pageRangeDisplayed={5}
-          marginPagesDisplayed={1}
-          pageCount={pageCount}
-          previousLabel='<'
-          renderOnZeroPageCount={null}
-          containerClassName='pokedex-pagination'
-          pageClassName='pokedex-pagination__list-item'
-          activeClassName=''
-          pageLinkClassName='pokedex-pagination__pagination-page'
-          activeLinkClassName='pokedex-pagination__pagination-page_active'
-          breakLinkClassName='pokedex-pagination__pagination-page break-link'
-          previousLinkClassName='pokedex-pagination__pagination-btn'
-          nextLinkClassName='pokedex-pagination__pagination-btn'
-        />
-      </div>
+      {pokemonData.length !== 0 ? (
+        <>
+          <div className='container'>
+            <PokemonsList pokemonData={currentItems} isLoading={isLoading} />
+            <ReactPaginate
+              breakLabel='...'
+              nextLabel='>'
+              onPageChange={handlePageClick}
+              pageRangeDisplayed={5}
+              marginPagesDisplayed={1}
+              pageCount={pageCount}
+              previousLabel='<'
+              renderOnZeroPageCount={null}
+              containerClassName='pokedex-pagination'
+              pageClassName='pokedex-pagination__list-item'
+              activeClassName=''
+              pageLinkClassName='pokedex-pagination__pagination-page'
+              activeLinkClassName='pokedex-pagination__pagination-page_active'
+              breakLinkClassName='pokedex-pagination__pagination-page break-link'
+              previousLinkClassName='pokedex-pagination__pagination-btn'
+              nextLinkClassName='pokedex-pagination__pagination-btn'
+            />
+          </div>
+        </>
+      ) : (
+        <div>
+          <h2 className="pokedex-cards__empty">No Pokemons found</h2>
+        </div>
+      )}
     </section>
   );
 };
