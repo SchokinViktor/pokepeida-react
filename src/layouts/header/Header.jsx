@@ -21,7 +21,7 @@ const Header = () => {
     <header className={active ? "header header_active" : "header"}>
       <div className='header__container container'>
         <div className='header__inner'>
-          <NavLink className='header__logo' to='/'>
+          <NavLink className='header__logo' to='/' onClick={closeNav}>
             <img src={Logo} alt='logo' />
           </NavLink>
           <div className='header__nav'>
@@ -35,7 +35,7 @@ const Header = () => {
               <li className='header__nav-item'>
                 <NavLink
                   className='header__nav-link'
-                  to='/pokedex'
+                  to='pokedex'
                   onClick={closeNav}
                 >
                   <PokedexIcon className = 'header__link-icon' />

@@ -4,7 +4,7 @@ import { useState } from "react";
 import PokedexHero from "./pokedex_hero/PokedexHero";
 import PokedexSearch from "./pokedex_search/PokedexSearch";
 import PokedexCards from "./pokedex_cards/PokedexCards";
-import { Context } from "./context";
+import { Context } from "./pokedexContext";
 
 const Pokedex = () => {
   const [pokemonData, setPokemonData] = useState([]);

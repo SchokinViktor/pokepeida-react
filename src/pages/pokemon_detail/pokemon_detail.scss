@@ -1,0 +1,25 @@
+@import "./pokemon_info/pokemon_info";
+
+.pokemon-detail {
+  background-color: $yellow;
+  padding: 220px 0;
+  overflow: hidden;
+
+  &__container {
+    display: flex;
+    justify-content: center;
+    @include xl {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+
+  &__img-holder {
+    display: none;
+    
+    @include xl {
+        display: block;
+    }
+  }
+}

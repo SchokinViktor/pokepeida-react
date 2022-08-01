@@ -3,9 +3,9 @@ import { useEffect, useState, useContext } from "react";
 import ReactPaginate from "react-paginate";
 
 import PokemonsList from "./PokemonsList";
-import searchForPokemons from "../../../utils/getPokemons";
+import getPokemons from "../../../utils/getPokemons";
 import fetchData from "../../../utils/fetchData";
-import { Context } from "../context";
+import { Context } from "../pokedexContext";
 
 const PokedexCards = () => {
   //using context
@@ -21,12 +21,13 @@ const PokedexCards = () => {
     const response = await fetchData(
       `https://pokeapi.co/api/v2/pokemon/?limit=151`
     );
-    searchForPokemons(response.data.results, setPokemonData, inputValue);
+    getPokemons(response.data.results, setPokemonData, inputValue);
 
     setLoading(false);
   };
 
   useEffect(() => {
+    
     renderPokemons();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inputValue]);
@@ -75,7 +76,7 @@ const PokedexCards = () => {
           </div>
         </>
       ) : (
-        <div>
+        <div >
           <h2 className="pokedex-cards__empty">No Pokemons found</h2>
         </div>
       )}

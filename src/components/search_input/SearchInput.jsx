@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 
 import { addAdditionalClass } from "../../utils/addAdditionalClass";
-import { Context } from "../../pages/pokedex/context";
+import { Context } from "../../pages/pokedex/pokedexContext";
 
 const PokedexSearch = ({ className = "", placeholder = "" }) => {
   const { setInputValue } = useContext(Context);

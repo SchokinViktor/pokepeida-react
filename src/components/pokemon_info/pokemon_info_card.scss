@@ -1,0 +1,119 @@
+.pokemon-info-card {
+  background-color: #fff;
+  position: relative;
+  max-width: 528px;
+  border-radius: $border-radius;
+  padding: 30px;
+
+  &__img-holder {
+    position: absolute;
+    max-width: 170px;
+    right: -40px;
+    top: -120px;
+  }
+
+  &__number {
+    font-weight: 700;
+    font-size: rem(14);
+    color: $black-2;
+    margin-bottom: 10px;
+  }
+
+  &__name {
+    font-weight: 700;
+    font-size: rem(28);
+    letter-spacing: 0.1em;
+    color: $black-1;
+    text-transform: uppercase;
+    margin-bottom: 10px
+  }
+
+  &__types-list {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -5px;
+    margin-bottom: 20px
+  }
+
+  &__type-item {
+    padding: 0 5px;
+    margin-bottom: 5px;
+  }
+
+  &__type {
+    padding: 5px 15px;
+    background-color: $yellow;
+    border-radius: $border-radius;
+    text-transform: uppercase;
+    font-size: rem(14);
+    font-weight: 600;
+    color: $black-1;
+    margin-bottom: 10px;
+
+    @include md {
+      padding: 10px 20px;
+      font-size: rem(18);
+    }
+  }
+
+  &__stats-list {
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    margin-bottom: 35px
+  }
+
+  &__stats-item {
+  }
+
+  &__stat-title {
+    font-weight: 700;
+    font-size: rem(16);
+    color: $yellow;
+    margin-bottom: 8px;
+  }
+
+  &__stat-text {
+    font-weight: 700;
+    font-size: rem(14);
+    color: $black-1;
+  }
+
+  &__abilities {
+  }
+
+  &__abilities-title {
+    font-weight: 500;
+    font-size: rem(24);
+    letter-spacing: 0.1em;
+    color: $black-1;
+    margin-bottom: 15px
+  }
+
+  &__abilities-list {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -5px;
+  }
+
+  &__ability-item {
+    padding: 0 5px;
+    margin-bottom: 5px;
+  }
+
+  &__ability {
+    padding: 8px 15px;
+    background-color: $yellow;
+    border-radius: $border-radius;
+    text-transform: uppercase;
+    font-size: rem(16);
+    font-weight: 600;
+    color: $black-1;
+    margin-bottom: 10px;
+
+    @include md {
+      padding: 10px 20px;
+      font-size: rem(18);
+    }
+  }
+}

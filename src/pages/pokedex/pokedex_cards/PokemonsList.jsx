@@ -1,6 +1,7 @@
 import React from "react";
-import PokemonCard from "../../../components/pokedex_card/PokedexCard";
+import { Link } from "react-router-dom";
 
+import PokemonCard from "../../../components/pokedex_card/PokedexCard";
 import Loader from "../../../components/loader/Loader";
 
 const PokemonsList = ({ pokemonData, isLoading }) => {
@@ -12,7 +13,9 @@ const PokemonsList = ({ pokemonData, isLoading }) => {
         {pokemonData.map((item, i) => {
           return (
             <li key={i} className='pokedex-cards__card-item'>
-              <PokemonCard className='' pokemon={item} />
+              <Link style={{width: `100%`, textDecoration: `none`, display: 'flex', justifyContent: 'center'}} to={`/pokedex/${item.id}`}>
+                <PokemonCard className='' pokemon={item} />
+              </Link>
             </li>
           );
         })}

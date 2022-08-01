@@ -7,16 +7,16 @@
     grid-row-gap: 170px;
 
     @include md {
-        grid-template-columns: 2fr 2fr;
+      grid-template-columns: 2fr 2fr;
     }
 
     @include lg {
-        grid-template-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
     }
- 
+
     @include xl {
-        align-items: end;
-        align-items: center;
+      align-items: end;
+      align-items: center;
     }
   }
 
@@ -26,16 +26,17 @@
     display: flex;
     justify-content: center;
 
-
     &:last-child {
-        margin-bottom: 0;
+      margin-bottom: 0;
     }
   }
 
   &__empty {
-    font-size: rem(64);
+    font-size: rem(42);
     color: $black-2;
     text-align: center;
+    @include md {
+      font-size: rem(64);
+    }
   }
-
 }
