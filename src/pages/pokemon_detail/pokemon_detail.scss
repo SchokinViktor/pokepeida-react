@@ -2,24 +2,37 @@
 
 .pokemon-detail {
   background-color: $yellow;
-  padding: 220px 0;
+  padding: 320px 0;
   overflow: hidden;
 
+  @include xl {
+    padding: 380px 0;
+  }
+
+  @include xxl {
+    padding: 220px 0;
+  }
+
+
   &__container {
+    padding: 0;
     display: flex;
     justify-content: center;
-    @include xl {
+    @include xxl {
       display: flex;
       align-items: center;
       justify-content: space-between;
+      padding: 0 15px;
     }
   }
 
   &__img-holder {
     display: none;
     
-    @include xl {
+    @include xxl {
         display: block;
+        position: relative;
+        z-index: 2;
     }
   }
 }

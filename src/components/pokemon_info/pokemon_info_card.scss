@@ -1,107 +1,81 @@
 .pokemon-info-card {
   background-color: #fff;
   position: relative;
-  max-width: 528px;
+  width: 100%;
   border-radius: $border-radius;
-  padding: 30px;
+  padding: 100px 15px 30px;
 
-  &__img-holder {
-    position: absolute;
-    max-width: 170px;
-    right: -40px;
-    top: -120px;
+  @include xxl {
+    max-width: 528px;
+    padding: 40px 30px 30px;
   }
 
-  &__number {
-    font-weight: 700;
-    font-size: rem(14);
-    color: $black-2;
-    margin-bottom: 10px;
+  &__container {
+    max-width: 500px;
+    margin: 0 auto;
+    text-align: center;
+
+    @include xl {
+      width: 100%;
+    }
+  }
+
+  &__img-holder {
+    z-index: 2;
+    position: absolute;
+    max-width: 250px;
+    width: 100%;
+    top: -160px;
+    right: 50%;
+    transform: translateX(50%);
+
+    @include xxl {
+      display: block;
+      max-width: 120px;
+      top: -60px;
+      right: 0;
+      transform: translateX(0);
+    }
+  }
+
+  &__img-mobile {
+    display: block;
+    @include xxl {
+      display: none;
+    }
+  }
+
+  &__img-desktop {
+    display: none;
+
+    @include xxl {
+      display: block;
+    }
   }
 
   &__name {
     font-weight: 700;
-    font-size: rem(28);
+    font-size: rem(36);
     letter-spacing: 0.1em;
     color: $black-1;
     text-transform: uppercase;
-    margin-bottom: 10px
+    margin-bottom: 15px;
+  }
+
+  &__list-item {
+    padding: 0 5px;
+    margin-bottom: 15px;
   }
 
   &__types-list {
     display: flex;
     flex-wrap: wrap;
     margin: 0 -5px;
-    margin-bottom: 20px
-  }
-
-  &__type-item {
-    padding: 0 5px;
-    margin-bottom: 5px;
+    margin-bottom: 35px;
+    justify-content: center;
   }
 
   &__type {
-    padding: 5px 15px;
-    background-color: $yellow;
-    border-radius: $border-radius;
-    text-transform: uppercase;
-    font-size: rem(14);
-    font-weight: 600;
-    color: $black-1;
-    margin-bottom: 10px;
-
-    @include md {
-      padding: 10px 20px;
-      font-size: rem(18);
-    }
-  }
-
-  &__stats-list {
-    display: flex;
-    justify-content: space-between;
-    text-align: center;
-    margin-bottom: 35px
-  }
-
-  &__stats-item {
-  }
-
-  &__stat-title {
-    font-weight: 700;
-    font-size: rem(16);
-    color: $yellow;
-    margin-bottom: 8px;
-  }
-
-  &__stat-text {
-    font-weight: 700;
-    font-size: rem(14);
-    color: $black-1;
-  }
-
-  &__abilities {
-  }
-
-  &__abilities-title {
-    font-weight: 500;
-    font-size: rem(24);
-    letter-spacing: 0.1em;
-    color: $black-1;
-    margin-bottom: 15px
-  }
-
-  &__abilities-list {
-    display: flex;
-    flex-wrap: wrap;
-    margin: 0 -5px;
-  }
-
-  &__ability-item {
-    padding: 0 5px;
-    margin-bottom: 5px;
-  }
-
-  &__ability {
     padding: 8px 15px;
     background-color: $yellow;
     border-radius: $border-radius;
@@ -109,11 +83,96 @@
     font-size: rem(16);
     font-weight: 600;
     color: $black-1;
-    margin-bottom: 10px;
 
-    @include md {
+    @include sm {
       padding: 10px 20px;
       font-size: rem(18);
     }
+  }
+
+  &__stats-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    text-align: center;
+    margin: 0 auto 35px;
+    max-width: 400px;
+  }
+
+  &__stat-title {
+    font-weight: 700;
+    font-size: rem(18);
+    color: $yellow;
+    margin-bottom: 8px;
+
+    @include sm {
+      font-size: rem(24);
+    }
+  }
+
+  &__stat-text {
+    font-weight: 700;
+    font-size: rem(16);
+    color: $black-1;
+    @include sm {
+      font-size: rem(18);
+    }
+  }
+
+  &__section-title {
+    font-weight: 500;
+    font-size: rem(24);
+    letter-spacing: 0.1em;
+    color: $black-1;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+  }
+
+  &__description {
+    margin-bottom: 35px;
+  }
+
+  &__description-text {
+    font-family: "Rubik";
+    font-weight: 500;
+    font-size: rem(16);
+    line-height: 150%;
+    color: $black-1;
+    text-align: center;
+
+    @include md {
+      font-size: rem(18);
+    }
+  }
+
+  &__abilities {
+    margin-bottom: 35px;
+  }
+
+  &__abilities-list {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -5px;
+    justify-content: center;
+  }
+
+  &__ability {
+    padding: 8px 15px;
+    background-color: $yellow;
+    border-radius: 20px;
+    text-transform: uppercase;
+    font-size: rem(16);
+    font-weight: 600;
+    color: $black-1;
+
+    @include sm {
+      padding: 10px 20px;
+      font-size: rem(18);
+    }
+  }
+
+  &__chart-holder {
+    max-width: 270px;
+    margin: 0 auto;
   }
 }

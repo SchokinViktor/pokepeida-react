@@ -19,7 +19,7 @@ const PokedexCards = () => {
 
     setPokemonData([]);
     const response = await fetchData(
-      `https://pokeapi.co/api/v2/pokemon/?limit=151`
+      `https://pokeapi.co/api/v2/pokemon/?limit=300`
     );
     getPokemons(response.data.results, setPokemonData, inputValue);
 

@@ -6,8 +6,19 @@ const PokemonCard = ({ className = "", pokemon }) => {
   return (
     <div className={addAdditionalClass(className, "pokedex-card")}>
       <div className='pokedex-card__card-img'>
-        <img src={pokemon.sprites.other['official-artwork'].front_default} alt={pokemon.name} />
+        {/* <img
+          src={pokemon.sprites.other["official-artwork"].front_default}
+          alt={pokemon.name}
+        /> */}
         {/* <img src={pokemon.sprites.other.home.front_default} alt={pokemon.name} /> */}
+        <img
+          className="pokedex-card__img-anim"
+          src={
+            pokemon.sprites.versions["generation-v"]["black-white"].animated
+              .front_default
+          }
+          alt={pokemon.name}
+        />
       </div>
       <div className='pokedex-card__card-number'>№{pokemon.id}</div>
       <div className='pokedex-card__card-name'>{pokemon.name}</div>
