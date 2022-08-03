@@ -1,4 +1,5 @@
-@import "./pokemon_info/pokemon_info";
+@import './pokemon_detail_image/pokemon_detail_image';
+@import './pokemon_evolution/pokemon_evolution';
 
 .pokemon-detail {
   background-color: $yellow;
@@ -16,7 +17,6 @@
 
   &__container {
     padding: 0;
-    display: flex;
     justify-content: center;
     @include xxl {
       display: flex;
@@ -26,13 +26,8 @@
     }
   }
 
-  &__img-holder {
-    display: none;
-    
-    @include xxl {
-        display: block;
-        position: relative;
-        z-index: 2;
-    }
+  &__col {
+    width: 100%;
+    margin-bottom: 30px;
   }
 }

@@ -1,0 +1,65 @@
+.pokemon-evo {
+  background-color: $body-color;
+  padding: 25px 25px 45px;
+  border-radius: $border-radius;
+  
+  @include xl {
+    padding: 25px 125px 45px;
+  }
+
+  @include xxl {
+    padding: 25px 25px 45px;
+  }
+
+  &__evo-title {
+    text-align: center;
+    font-weight: 500;
+    font-size: 32px;
+    letter-spacing: 0.1em;
+    color: $black-1;
+    text-transform: uppercase;
+    margin-bottom: 60px;
+  }
+
+  &__list {
+
+    @include md {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+  }
+
+  &__evo-card {
+    padding: 35px 5px 10px;
+    max-width: 240px;
+    .pokedex-card__card-img {
+      bottom: 130px;
+    }
+
+    .pokedex-card__img-anim {
+      max-width: 70px;
+    }
+
+    .pokedex-card__card-number {
+      margin-bottom: 3px;
+    }
+
+    .pokedex-card__card-name {
+      margin-bottom: 15px;
+    }
+
+    .pokedex-card__type {
+      padding: 5px 10px;
+      font-size: rem(14);
+      font-weight: 600;
+      color: $black-1;
+      margin-bottom: 10px;
+
+      @include md {
+        border-radius: $border-radius-small;
+        padding: 7px 10px;
+        font-size: rem(14);
+      }
+    }
+  }
+}

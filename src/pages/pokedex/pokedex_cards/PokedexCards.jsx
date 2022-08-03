@@ -21,6 +21,7 @@ const PokedexCards = () => {
     const response = await fetchData(
       `https://pokeapi.co/api/v2/pokemon/?limit=300`
     );
+    console.log(response);
     getPokemons(response.data.results, setPokemonData, inputValue);
 
     setLoading(false);
@@ -54,7 +55,7 @@ const PokedexCards = () => {
       {pokemonData.length !== 0 ? (
         <>
           <div className='container'>
-            <PokemonsList pokemonData={currentItems} isLoading={isLoading} />
+            <PokemonsList pokemonData={currentItems}/>
             <ReactPaginate
               breakLabel='...'
               nextLabel='>'

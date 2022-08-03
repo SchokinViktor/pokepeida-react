@@ -4,7 +4,7 @@
   &__cards-list {
     display: grid;
     justify-items: center;
-    grid-row-gap: 170px;
+    grid-row-gap: 100px;
 
     @include md {
       grid-template-columns: 2fr 2fr;

@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Radar } from "react-chartjs-2";
+import { Bar } from "react-chartjs-2";
 // eslint-disable-next-line no-unused-vars
 import { Chart as ChartJS } from "chart.js/auto";
 import fetchData from "../../utils/fetchData";
 
-const PokemonInfoCard = ({ pokemonData }) => {
+const PokemonDetailCard = ({ pokemonData }) => {
   const [statsData, setStatsData] = useState({});
   const [statsOptions, setStatsOptions] = useState({});
   const [pokemonDescription, setPokemonDescription] = useState("");
@@ -23,9 +23,9 @@ const PokemonInfoCard = ({ pokemonData }) => {
         {
           label: "STATS",
           data: pokemonData.stats.map((item) => item.base_stat),
-          backgroundColor: ["rgba(255, 223, 52, 0.5)"],
+          backgroundColor: ["rgba(255, 223, 52, 0.8)"],
           borderColor: "#787D83",
-          hoverBackgroundColor: "#A8F087",
+          hoverBackgroundColor: "#FF5350",
           pointBackgroundColor: "#FED601",
           tension: 0.05,
           pointRadius: 5,
@@ -64,8 +64,7 @@ const PokemonInfoCard = ({ pokemonData }) => {
   if (statsData.datasets === undefined) return <div>Loading...</div>;
   if (statsOptions.scales.r.pointLabels.font.size === undefined)
     return <div>Loading...</div>;
-  if (pokemonDescription === undefined)
-    return <div>Loading...</div>;
+  if (pokemonDescription === undefined) return <div>Loading...</div>;
 
   // if (window.outerWidth < 1200) {
   //   statsOptions.scales.r.pointLabels.font.size = 0;
@@ -140,13 +139,13 @@ const PokemonInfoCard = ({ pokemonData }) => {
             })}
           </ul>
         </div>
-        {/* <div className='pokemon-info-card__chart-holder'>
+        <div className='pokemon-info-card__chart-holder'>
           <div className='pokemon-info-card__section-title'>Stats</div>
-          <Radar data={statsData} options={statsOptions} />
-        </div> */}
+          <Bar data={statsData} options={statsOptions} />
+        </div>
       </div>
     </div>
   );
 };
 
-export default PokemonInfoCard;
+export default PokemonDetailCard;
