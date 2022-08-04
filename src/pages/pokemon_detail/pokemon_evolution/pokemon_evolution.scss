@@ -2,6 +2,7 @@
   background-color: $body-color;
   padding: 25px 25px 45px;
   border-radius: $border-radius;
+  box-shadow: $shadow;
   
   @include xl {
     padding: 25px 125px 45px;

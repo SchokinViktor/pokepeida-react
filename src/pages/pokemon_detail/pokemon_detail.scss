@@ -1,13 +1,14 @@
 @import './pokemon_detail_image/pokemon_detail_image';
 @import './pokemon_evolution/pokemon_evolution';
+@import './pokemon_detail_radar/pokemon_detail_radar';
 
 .pokemon-detail {
   background-color: $yellow;
-  padding: 320px 0;
+  padding: 320px 0 220px;
   overflow: hidden;
 
   @include xl {
-    padding: 380px 0;
+    padding: 380px 0 220px;
   }
 
   @include xxl {
@@ -20,9 +21,18 @@
     justify-content: center;
     @include xxl {
       display: flex;
-      align-items: center;
+      align-items: flex-end;
       justify-content: space-between;
       padding: 0 15px;
+      margin-bottom: 100px;
+    }
+  }
+
+  &__radar-container {
+    padding: 0;
+
+    @include xxl {
+      padding: 15px;
     }
   }
 

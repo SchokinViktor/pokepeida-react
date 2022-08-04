@@ -4,6 +4,7 @@
   width: 100%;
   border-radius: $border-radius;
   padding: 100px 15px 30px;
+  box-shadow: $shadow;
 
   @include xxl {
     max-width: 528px;
@@ -71,7 +72,7 @@
     display: flex;
     flex-wrap: wrap;
     margin: 0 -5px;
-    margin-bottom: 35px;
+    margin-bottom: 25px;
     justify-content: center;
   }
 
@@ -95,7 +96,7 @@
     flex-wrap: wrap;
     justify-content: space-between;
     text-align: center;
-    margin: 0 auto 35px;
+    margin: 0 auto 20px;
     max-width: 400px;
   }
 
@@ -129,7 +130,7 @@
   }
 
   &__description {
-    margin-bottom: 35px;
+    margin-bottom: 25px;
   }
 
   &__description-text {
@@ -146,7 +147,7 @@
   }
 
   &__abilities {
-    margin-bottom: 35px;
+    margin-bottom: 25px;
   }
 
   &__abilities-list {

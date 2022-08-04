@@ -6,10 +6,7 @@ import Loader from "../../../components/loader/Loader";
 import { addAdditionalClass } from "../../../utils/addAdditionalClass";
 
 const PokemonsList = ({ pokemonData, listClassName = "", className = "" }) => {
-  console.log(pokemonData);
   if (!pokemonData) return <Loader />;
-
-  console.log(pokemonData);
 
   return (
     <ul

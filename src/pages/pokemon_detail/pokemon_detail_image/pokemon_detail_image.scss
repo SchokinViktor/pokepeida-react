@@ -33,6 +33,8 @@
       position: relative;
       z-index: 2;
       display: block;
+      max-width: 500px;
+      margin: 0 auto;
 
       &::after {
         content: "";
@@ -56,7 +58,7 @@
     top: 350px;
     right: 50%;
     transform: translateX(50%);
-    max-width: 480px;
+    max-width: 490px;
     width: 90%;
 
     @include sm {
@@ -70,7 +72,7 @@
 
     @include xxl {
       width: 100%;
-      max-width: 630px;
+      max-width: 680px;
       top: -30px;
     }
   }
@@ -88,7 +90,7 @@
     text-transform: uppercase;
     box-shadow: $shadow;
     cursor: pointer;
-    transition: all 0.2s linear;
+    transition: all 0.1s linear;
 
     &:hover {
       box-shadow: $shadow-red;

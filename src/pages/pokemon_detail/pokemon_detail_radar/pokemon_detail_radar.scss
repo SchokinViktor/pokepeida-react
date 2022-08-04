@@ -1,0 +1,22 @@
+.pokemon-detail-radar {
+    width: 100%;
+   
+    background-color: $body-color;
+    padding: 40px 0 0;
+    border-radius: $border-radius;
+
+  &__title {
+    text-align: center;
+    font-weight: 500;
+    font-size: rem(32);
+    letter-spacing: 0.1em;
+    color: $black-1;
+    text-transform: uppercase;
+    margin-bottom: 60px;
+  }
+
+  &__wrapper {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+}

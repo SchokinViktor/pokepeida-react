@@ -12,7 +12,7 @@ const PokemonCard = ({ className = "", pokemon }) => {
         /> */}
         {/* <img src={pokemon.sprites.other.home.front_default} alt={pokemon.name} /> */}
         <img
-          className="pokedex-card__img-anim"
+          className='pokedex-card__img-anim'
           src={
             pokemon.sprites.versions["generation-v"]["black-white"].animated
               .front_default

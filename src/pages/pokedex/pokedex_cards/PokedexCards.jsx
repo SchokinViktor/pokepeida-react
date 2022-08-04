@@ -19,16 +19,14 @@ const PokedexCards = () => {
 
     setPokemonData([]);
     const response = await fetchData(
-      `https://pokeapi.co/api/v2/pokemon/?limit=300`
+      `https://pokeapi.co/api/v2/pokemon/?limit=500`
     );
-    console.log(response);
     getPokemons(response.data.results, setPokemonData, inputValue);
 
     setLoading(false);
   };
 
   useEffect(() => {
-    
     renderPokemons();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inputValue]);
@@ -55,7 +53,7 @@ const PokedexCards = () => {
       {pokemonData.length !== 0 ? (
         <>
           <div className='container'>
-            <PokemonsList pokemonData={currentItems}/>
+            <PokemonsList pokemonData={currentItems} />
             <ReactPaginate
               breakLabel='...'
               nextLabel='>'
@@ -77,8 +75,8 @@ const PokedexCards = () => {
           </div>
         </>
       ) : (
-        <div >
-          <h2 className="pokedex-cards__empty">No Pokemons found</h2>
+        <div>
+          <h2 className='pokedex-cards__empty'>No Pokemons found</h2>
         </div>
       )}
     </section>

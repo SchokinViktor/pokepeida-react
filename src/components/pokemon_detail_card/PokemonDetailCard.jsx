@@ -2,21 +2,12 @@ import React, { useEffect, useState } from "react";
 import { Bar } from "react-chartjs-2";
 // eslint-disable-next-line no-unused-vars
 import { Chart as ChartJS } from "chart.js/auto";
-import fetchData from "../../utils/fetchData";
 
-const PokemonDetailCard = ({ pokemonData }) => {
+const PokemonDetailCard = ({ pokemonData, pokemonDescription }) => {
   const [statsData, setStatsData] = useState({});
   const [statsOptions, setStatsOptions] = useState({});
-  const [pokemonDescription, setPokemonDescription] = useState("");
 
   useEffect(() => {
-    const fetchDescription = async () => {
-      const url = pokemonData.species.url;
-      const result = await fetchData(url);
-      setPokemonDescription(result.data.flavor_text_entries[8].flavor_text);
-    };
-    fetchDescription();
-
     setStatsData({
       labels: pokemonData.stats.map((item) => item.stat.name.toUpperCase()),
       datasets: [
@@ -55,20 +46,11 @@ const PokemonDetailCard = ({ pokemonData }) => {
       },
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [pokemonData]);
 
-  useEffect(() => {}, []);
-
-  //
-  if (pokemonData === undefined) return <div>Loading...</div>;
   if (statsData.datasets === undefined) return <div>Loading...</div>;
-  if (statsOptions.scales.r.pointLabels.font.size === undefined)
-    return <div>Loading...</div>;
-  if (pokemonDescription === undefined) return <div>Loading...</div>;
-
-  // if (window.outerWidth < 1200) {
-  //   statsOptions.scales.r.pointLabels.font.size = 0;
-  // }
+  // if (statsOptions.scales.r.pointLabels.font.size === undefined)
+  //   return <div>Loading...</div>;
 
   return (
     <div className='pokemon-info-card'>

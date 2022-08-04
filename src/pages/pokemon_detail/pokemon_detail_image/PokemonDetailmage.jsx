@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 import checkZero from "../../../utils/chekZero";
 
@@ -15,12 +16,17 @@ const PokemonDetailmage = ({ pokemonData }) => {
         />
       </div>
       <div className='pokemon-detail-img__btns'>
-        <button className='pokemon-detail-img__btn pokemon-detail-img__btn_left'>
-          Prev
-        </button>
-        <button className='pokemon-detail-img__btn pokemon-detail-img__btn_right'>
-          Next
-        </button>
+        <NavLink to={pokemonData.id === 1? `/pokedex/${pokemonData.id}` : `/pokedex/${pokemonData.id -1}`}>
+          <button className='pokemon-detail-img__btn pokemon-detail-img__btn_left'>
+            Prev
+          </button>
+        </NavLink>
+
+        <NavLink to={pokemonData.id === 500? `/pokedex/${pokemonData.id}` : `/pokedex/${pokemonData.id + 1}`}>
+          <button className='pokemon-detail-img__btn pokemon-detail-img__btn_right'>
+            Next
+          </button>
+        </NavLink>
       </div>
     </div>
   );
