@@ -5,12 +5,11 @@ import PokedexHero from "./pokedex_hero/PokedexHero";
 import PokedexSearch from "./pokedex_search/PokedexSearch";
 import PokedexCards from "./pokedex_cards/PokedexCards";
 import FetchAllPokemons from "../../utils/fetchAllPokemons";
-import Loader from "../../components/loader/Loader";
 
 const Pokedex = () => {
   const [allPokemonData, setAllPokemonData] = useState([]);
   const [pokemonData, setPokemonData] = useState([]);
-  const [inputValue, setInputValue] = useState("");
+  const [cardsPerPage, setCardsPerPage] = useState(12);
 
   useEffect(() => {
     FetchAllPokemons(setAllPokemonData);
@@ -20,17 +19,19 @@ const Pokedex = () => {
     setPokemonData(allPokemonData);
   }, [allPokemonData]);
 
-  
-
   return (
     <>
       <PokedexHero />
       <PokedexSearch
         allPokemonData={allPokemonData}
         setPokemonData={setPokemonData}
-        pokemonData = {pokemonData}
+        setCardsPerPage={setCardsPerPage}
       />
-      <PokedexCards pokemonData={pokemonData} />
+      <PokedexCards
+        pokemonData={pokemonData}
+        setCardsPerPage={setCardsPerPage}
+        cardsPerPage={cardsPerPage}
+      />
     </>
   );
 };

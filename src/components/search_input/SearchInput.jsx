@@ -2,11 +2,14 @@ import React from "react";
 
 import { addAdditionalClass } from "../../utils/addAdditionalClass";
 
-const PokedexSearch = ({ className = "", placeholder = "", handleSearch, setSearchValue }) => {
+const PokedexSearch = ({
+  className = "",
+  placeholder = "",
+  setSearchValue,
+}) => {
   const handleValueChange = (event) => {
     const { value } = event.target;
-    setSearchValue(value)
-    // handleSearch(value);
+    setSearchValue(value);
   };
 
   return (

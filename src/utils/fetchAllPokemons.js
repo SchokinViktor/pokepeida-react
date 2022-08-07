@@ -1,8 +1,10 @@
 import fetchData from "./fetchData";
 
+export const pokemonsLimit = 905;
+
 const FetchAllPokemons = async (setPokemonData) => {
   const response = await fetchData(
-    `https://pokeapi.co/api/v2/pokemon/?limit=500`
+    `https://pokeapi.co/api/v2/pokemon/?limit=${905}`
   );
 
   const pokemonsArray = [];

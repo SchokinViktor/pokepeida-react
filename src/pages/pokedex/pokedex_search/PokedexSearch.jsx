@@ -1,80 +1,52 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 import SearchInput from "../../../components/search_input/SearchInput";
 import FilterInput from "../../../components/filter_input/FilterInput";
+import RangeFilter from "../../../components/range_filter/RangeFilter";
+import {
+  handleRange,
+  handleSearch,
+  handleFilterHeight,
+  handleFilterWeight,
+  handleFilterTypes,
+  handleSort,
+} from "../../../utils/filters";
+import {
+  typesArray,
+  heightArray,
+  weightArray,
+} from "../../../utils/filtersData";
 
-const PokedexSearch = ({ allPokemonData, setPokemonData, pokemonData }) => {
-  const [filteredPokemons, setFilteredPokemons] = useState([])
-  const [searchValue, setSearchValue] = useState('');
-  const [heightValue, setHeightValue] = useState('');
-  
+const PokedexSearch = ({ allPokemonData, setPokemonData, setCardsPerPage }) => {
+  const [searchValue, setSearchValue] = useState("");
+  const [heightValue, setHeightValue] = useState("");
+  const [weightValue, setWeightValue] = useState("");
+  const [sortValue, setSortValue] = useState("");
+  const [typesValue, setTypesValue] = useState([]);
+  const [maxRangeValue, setMaxRangeValue] = useState();
+  const [minRangeValue, setMinRangeValue] = useState();
+
   useEffect(() => {
     let result = allPokemonData;
+    setCardsPerPage(12);
+    result = handleRange(minRangeValue, maxRangeValue, result);
+    result = handleSearch(searchValue, result);
+    result = handleFilterHeight(heightValue, result);
+    result = handleFilterWeight(weightValue, result);
+    result = handleFilterTypes(typesValue, result);
+    result = handleSort(sortValue, result);
+    setPokemonData(result);
 
-    result = handleSearch(searchValue, result)
-    console.log('SEARCH filter');
-    console.log(result);
-    result = handleFilterHeight(heightValue, result)
-    console.log('HEIGHT filter');
-    console.log(result);
-    setPokemonData(result)
-    console.log('RESULT');
-    console.log(pokemonData)
-  }, [searchValue, heightValue])
-  
-
-  const handleSearch = (pokemonName, array) => {
-
-    // eslint-disable-next-line array-callback-return
-    array = array.filter((item) => {
-      if (item.name.toLowerCase().includes(pokemonName.toLowerCase())) {
-        return item;
-      }
-    });
-    return array
-    // setFilteredPokemons(filteredData);
-  };
-
-  const handleFilterHeight = (pokemonHeight, array) => {
-    // eslint-disable-next-line array-callback-return
-    if(pokemonHeight == '') {
-      return array
-    }else {
-      array = array.filter((item) => {
-        if (item.height === pokemonHeight) {
-          return item;
-        }
-      });
-      return array
-    }
-    
-    // setPokemonData(filteredData);
-  };
-
-  const typesArray = [
-    "Bug",
-    "Dragon",
-    "Fairy",
-    "Fire",
-    "Ghost",
-    "Ground",
-    "Normal",
-    "Psycho",
-    "Steel",
-    "Dark",
-    "Electric",
-    "Fighting",
-    "Flying",
-    "Grass",
-    "Ice",
-    "Poison",
-    "Rock",
-    "Water",
-  ];
-  const heightArray = [3, 11, 15];
-  const weightArray = [150, 250, 350];
-
-  
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [
+    searchValue,
+    heightValue,
+    weightValue,
+    typesValue,
+    sortValue,
+    maxRangeValue,
+    minRangeValue,
+  ]);
 
   return (
     <section className='pokedex-search'>
@@ -82,19 +54,23 @@ const PokedexSearch = ({ allPokemonData, setPokemonData, pokemonData }) => {
         <SearchInput
           className='pokedex-search__input'
           placeholder='Search for Pokemon!'
-          handleSearch={handleSearch}
-          setSearchValue = {setSearchValue}
+          setSearchValue={setSearchValue}
         />
         <div className='pokedex-search__row'>
           <div className='pokedex-search__filter-order'>
             <FilterInput
               label='Order'
               optionsArray={["Asending", "Decreasing"]}
-              standartVariant={true}
+              setValue={setSortValue}
               // hasNoneOption = {false}
             />
           </div>
-          <div className='pokedex-search__filter-range'>Range</div>
+          <div className='pokedex-search__filter-range'>
+            <RangeFilter
+              setMinRangeValue={setMinRangeValue}
+              setMaxRangeValue={setMaxRangeValue}
+            />
+          </div>
         </div>
         <div className='pokedex-search__row'>
           <ul className='pokedex-search__filter-list'>
@@ -104,18 +80,22 @@ const PokedexSearch = ({ allPokemonData, setPokemonData, pokemonData }) => {
                 optionsArray={typesArray}
                 multiple={true}
                 hasNoneOption={false}
+                setValue={setTypesValue}
               />
             </li>
             <li className='pokedex-search__filter-item'>
               <FilterInput
-                onChange={handleFilterHeight}
-                setValue = {setHeightValue}
+                setValue={setHeightValue}
                 label='Height'
                 optionsArray={heightArray}
               />
             </li>
             <li className='pokedex-search__filter-item'>
-              <FilterInput label='Weight' optionsArray={weightArray} />
+              <FilterInput
+                label='Weight'
+                optionsArray={weightArray}
+                setValue={setWeightValue}
+              />
             </li>
           </ul>
         </div>

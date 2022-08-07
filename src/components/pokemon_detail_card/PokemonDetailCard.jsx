@@ -88,13 +88,13 @@ const PokemonDetailCard = ({ pokemonData, pokemonDescription }) => {
           <li className='pokemon-info-card__stats-item'>
             <div className='pokemon-info-card__stat-title'>Height</div>
             <div className='pokemon-info-card__stat-text'>
-              {pokemonData.height} ft
+              {pokemonData.height / 10} m
             </div>
           </li>
           <li className='pokemon-info-card__list-item'>
             <div className='pokemon-info-card__stat-title'>Weight</div>
             <div className='pokemon-info-card__stat-text'>
-              {pokemonData.weight} IBS
+              {pokemonData.weight / 10} kg
             </div>
           </li>
           <li className='pokemon-info-card__stats-item'>

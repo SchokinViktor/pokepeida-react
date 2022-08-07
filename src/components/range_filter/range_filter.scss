@@ -1,0 +1,31 @@
+.range-filter {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+
+  &__text {
+    font-weight: 600;
+    font-size: rem(18);
+    color: $black-1;
+    margin-right: 10px;
+
+    @include md {
+      font-size: rem(24);
+    }
+  }
+
+  &__input {
+    background-color: transparent;
+    border: 2px solid $grey-2;
+    border-radius: $border-radius-small;
+    width: 74px;
+    height: 41px;
+    margin-right: 20px;
+    padding: 10px;
+    transition: all 0.1s linear;
+
+    &:focus {
+        border: 2px solid $grey-1;
+    }
+  }
+}

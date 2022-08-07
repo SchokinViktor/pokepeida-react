@@ -2,11 +2,11 @@
   padding: 50px 0;
 
   @include xl {
-    padding: 126px 0;
+    padding: 100px 0;
   }
 
   &__input {
-    margin: 0 auto;
+    margin: 0 auto 50px;
   }
 
   &__row {
@@ -14,11 +14,13 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    align-items: center;
   }
 
   &__filter-order {
     max-width: 300px;
     width: 100%;
+    margin-bottom: 10px;
   }
 
   &__filter-range {
