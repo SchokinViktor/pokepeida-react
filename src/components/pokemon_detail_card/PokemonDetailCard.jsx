@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import { Bar } from "react-chartjs-2";
 // eslint-disable-next-line no-unused-vars
 import { Chart as ChartJS } from "chart.js/auto";
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
+
 
 const PokemonDetailCard = ({ pokemonData, pokemonDescription }) => {
   const [statsData, setStatsData] = useState({});

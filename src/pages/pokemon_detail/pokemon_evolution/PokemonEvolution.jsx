@@ -1,8 +1,11 @@
-import React, { useEffect } from "react";
-import { useState } from "react";
+import React, { useEffect, Suspense } from "react";
+
 
 import fetchData from "../../../utils/fetchData";
-import PokemonsList from "../../pokedex/pokedex_cards/PokemonsList";
+// import PokemonsList from "../../pokedex/pokedex_cards/PokemonsList";
+const PokemonsList = React.lazy(() =>
+  import("../../pokedex/pokedex_cards/PokemonsList")
+);
 
 const PokemonEvolution = ({ pokemonData, evolutionData, setEvolutionData }) => {
   
@@ -54,11 +57,13 @@ const PokemonEvolution = ({ pokemonData, evolutionData, setEvolutionData }) => {
   return (
     <div className='pokemon-evo'>
       <div className='pokemon-evo__evo-title'>Evolution</div>
+      <Suspense>
       <PokemonsList
         pokemonData={evolutionData}
         listClassName='pokemon-evo__list'
         className='pokemon-evo__evo-card'
       />
+      </Suspense>
     </div>
   );
 };

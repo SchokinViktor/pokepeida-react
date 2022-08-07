@@ -1,6 +1,8 @@
 import React from "react";
 
 import { addAdditionalClass } from "../../utils/addAdditionalClass.js";
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/opacity.css';
 
 const PokemonCard = ({ className = "", pokemon }) => {
   return (
@@ -12,6 +14,8 @@ const PokemonCard = ({ className = "", pokemon }) => {
         /> */}
         {/* <img src={pokemon.sprites.other.home.front_default} alt={pokemon.name} /> */}
         <img
+          
+         
           className='pokedex-card__img-anim'
           src={
             pokemon.sprites.versions["generation-v"]["black-white"].animated

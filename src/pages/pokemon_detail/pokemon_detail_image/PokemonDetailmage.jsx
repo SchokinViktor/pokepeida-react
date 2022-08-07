@@ -2,6 +2,8 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 
 import checkZero from "../../../utils/chekZero";
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/opacity.css';
 
 const PokemonDetailmage = ({ pokemonData }) => {
   return (
@@ -11,6 +13,8 @@ const PokemonDetailmage = ({ pokemonData }) => {
       </div>
       <div className='pokemon-detail-img__img-holder'>
         <img
+          effect="blur"
+          height='500px'
           src={pokemonData.sprites.other["official-artwork"].front_default}
           alt={pokemonData.name}
         />

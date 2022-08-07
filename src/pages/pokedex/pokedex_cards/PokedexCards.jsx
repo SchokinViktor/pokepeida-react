@@ -1,77 +1,68 @@
 import React from "react";
 import { useEffect, useState, useContext } from "react";
-import ReactPaginate from "react-paginate";
+// import ReactPaginate from "react-paginate";
+import axios from "axios";
 
 import PokemonsList from "./PokemonsList";
 import getPokemons from "../../../utils/getPokemons";
 import fetchData from "../../../utils/fetchData";
 import { Context } from "../pokedexContext";
+import ThreeDButton from "../../../components/buttons/three_d_button/ThreeDButton";
 
-const PokedexCards = () => {
+const PokedexCards = ({pokemonData}) => {
   //using context
-  const { pokemonData, setPokemonData, inputValue } = useContext(Context);
+
+  const [cardsPerPage, setCardsPerPage] = useState(12);
+  
 
   //Fetching Pokemons
-  const [isLoading, setLoading] = useState(true);
 
-  const renderPokemons = async () => {
-    setLoading(true);
+  // const renderPokemons = async () => {
+  //   setPokemonData([]);
+  //   const response = await fetchData(
+  //     `https://pokeapi.co/api/v2/pokemon/?limit=500`
+  //   );
+  //   setCardsPerPage(12);
+  //   getPokemons(response.data.results, setPokemonData, inputValue);
+  //   console.log("call");
+  // };
 
-    setPokemonData([]);
-    const response = await fetchData(
-      `https://pokeapi.co/api/v2/pokemon/?limit=500`
-    );
-    getPokemons(response.data.results, setPokemonData, inputValue);
+  // useEffect(() => {
+  //   // displayPokemons()
+  //   renderPokemons();
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
 
-    setLoading(false);
+  // useEffect(() => {
+  //   const timer = setTimeout(() => {
+  //     renderPokemons();
+  //   }, 800);
+
+  //   return () => clearTimeout(timer);
+  // }, [inputValue]);
+
+
+  const showMoreItems = () => {
+    setCardsPerPage((prevValue) => prevValue + 12);
   };
-
-  useEffect(() => {
-    renderPokemons();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [inputValue]);
-
-  //Pagination
-  const [currentItems, setCurrentItems] = useState([]);
-  const [pageCount, setPageCount] = useState(0);
-  const [itemOffset, setItemOffset] = useState(0); // index of the first item in currentp page
-  const itemsPerPage = 12;
-
-  useEffect(() => {
-    const endOffset = itemOffset + itemsPerPage; // index of the last item in current page
-    setCurrentItems(pokemonData.slice(itemOffset, endOffset));
-    setPageCount(Math.ceil(pokemonData.length / itemsPerPage));
-  }, [itemOffset, itemsPerPage, pokemonData]);
-
-  const handlePageClick = (event) => {
-    const newOffset = (event.selected * itemsPerPage) % pokemonData.length;
-    setItemOffset(newOffset);
-  };
+//
+  // if(!pokemonData) return <div>Loading...</div>
 
   return (
     <section className='pokedex-cards'>
       {pokemonData.length !== 0 ? (
         <>
           <div className='container'>
-            <PokemonsList pokemonData={currentItems} />
-            <ReactPaginate
-              breakLabel='...'
-              nextLabel='>'
-              onPageChange={handlePageClick}
-              pageRangeDisplayed={5}
-              marginPagesDisplayed={1}
-              pageCount={pageCount}
-              previousLabel='<'
-              renderOnZeroPageCount={null}
-              containerClassName='pokedex-pagination'
-              pageClassName='pokedex-pagination__list-item'
-              activeClassName=''
-              pageLinkClassName='pokedex-pagination__pagination-page'
-              activeLinkClassName='pokedex-pagination__pagination-page_active'
-              breakLinkClassName='pokedex-pagination__pagination-page break-link'
-              previousLinkClassName='pokedex-pagination__pagination-btn'
-              nextLinkClassName='pokedex-pagination__pagination-btn'
+            <PokemonsList
+              pokemonData={pokemonData}
+              itemsPerPage={cardsPerPage}
             />
+
+            {cardsPerPage < pokemonData.length && (
+              <div className='pokedex-cards__btn-wrapper'>
+                <ThreeDButton buttonText='Load More!' onClick={showMoreItems} />
+              </div>
+            )}
           </div>
         </>
       ) : (

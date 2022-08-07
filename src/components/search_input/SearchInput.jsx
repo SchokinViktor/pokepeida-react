@@ -1,19 +1,20 @@
-import React, { useContext } from "react";
+import React from "react";
 
 import { addAdditionalClass } from "../../utils/addAdditionalClass";
-import { Context } from "../../pages/pokedex/pokedexContext";
 
-const PokedexSearch = ({ className = "", placeholder = "" }) => {
-  const { setInputValue } = useContext(Context);
+const PokedexSearch = ({ className = "", placeholder = "", handleSearch, setSearchValue }) => {
+  const handleValueChange = (event) => {
+    const { value } = event.target;
+    setSearchValue(value)
+    // handleSearch(value);
+  };
 
   return (
     <div className={addAdditionalClass(className, "search-input-holder")}>
       <input
         type='text'
         placeholder={placeholder}
-        onChange={(event) => {
-          setInputValue(event.target.value);
-        }}
+        onChange={handleValueChange}
       />
     </div>
   );

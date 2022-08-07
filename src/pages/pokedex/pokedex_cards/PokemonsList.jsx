@@ -5,14 +5,17 @@ import PokemonCard from "../../../components/pokedex_card/PokedexCard";
 import Loader from "../../../components/loader/Loader";
 import { addAdditionalClass } from "../../../utils/addAdditionalClass";
 
-const PokemonsList = ({ pokemonData, listClassName = "", className = "" }) => {
-  if (!pokemonData) return <Loader />;
-
+const PokemonsList = ({
+  pokemonData,
+  listClassName = "",
+  className = "",
+  itemsPerPage = 3,
+}) => {
   return (
     <ul
       className={addAdditionalClass(listClassName, "pokedex-cards__cards-list")}
     >
-      {pokemonData.map((item, i) => {
+      {pokemonData.slice(0, itemsPerPage).map((item, i) => {
         return (
           <li key={i} className='pokedex-cards__card-item'>
             <Link

@@ -1,11 +1,40 @@
 .pokedex-search {
-    padding: 50px 0 ;
+  padding: 50px 0;
 
-    @include xl {
-        padding: 126px 0 ;
-    }
+  @include xl {
+    padding: 126px 0;
+  }
 
-    &__input {
-        margin: 0 auto;
-    }
+  &__input {
+    margin: 0 auto;
+  }
+
+  &__row {
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  &__filter-order {
+    max-width: 300px;
+    width: 100%;
+  }
+
+  &__filter-range {
+    display: flex;
+  }
+
+  &__filter-list {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -15px;
+    width: 100%;
+  }
+
+  &__filter-item {
+    padding: 0 15px 20px;
+    max-width: 150px;
+    width: 100%;
+  }
 }
