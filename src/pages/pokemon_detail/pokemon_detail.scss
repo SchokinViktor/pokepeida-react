@@ -4,11 +4,11 @@
 
 .pokemon-detail {
   background-color: $yellow;
-  padding: 320px 0 220px;
+  padding: 320px 0 120px;
   overflow: hidden;
 
   @include xl {
-    padding: 380px 0 220px;
+    padding: 380px 0 120px;
   }
 
   @include xxl {
@@ -30,14 +30,19 @@
 
   &__radar-container {
     padding: 0;
-
+    margin-bottom: 100px;
     @include xxl {
       padding: 15px;
+      
     }
   }
 
   &__col {
     width: 100%;
     margin-bottom: 30px;
+  }
+
+  &__return-button {
+    text-align: center;
   }
 }

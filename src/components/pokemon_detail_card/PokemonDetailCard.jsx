@@ -2,9 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Bar } from "react-chartjs-2";
 // eslint-disable-next-line no-unused-vars
 import { Chart as ChartJS } from "chart.js/auto";
-import { LazyLoadImage } from 'react-lazy-load-image-component';
-import 'react-lazy-load-image-component/src/effects/blur.css';
-
+import TypeBox from "../type_box/TypeBox";
+import { defineTypeColor } from "../../utils/defineTypeColor";
 
 const PokemonDetailCard = ({ pokemonData, pokemonDescription }) => {
   const [statsData, setStatsData] = useState({});
@@ -17,7 +16,7 @@ const PokemonDetailCard = ({ pokemonData, pokemonDescription }) => {
         {
           label: "STATS",
           data: pokemonData.stats.map((item) => item.base_stat),
-          backgroundColor: ["rgba(255, 223, 52, 0.8)"],
+          backgroundColor: [defineTypeColor(pokemonData.types[0].type.name)],
           borderColor: "#787D83",
           hoverBackgroundColor: "#FF5350",
           pointBackgroundColor: "#FED601",
@@ -52,8 +51,6 @@ const PokemonDetailCard = ({ pokemonData, pokemonDescription }) => {
   }, [pokemonData]);
 
   if (statsData.datasets === undefined) return <div>Loading...</div>;
-  // if (statsOptions.scales.r.pointLabels.font.size === undefined)
-  //   return <div>Loading...</div>;
 
   return (
     <div className='pokemon-info-card'>
@@ -64,41 +61,68 @@ const PokemonDetailCard = ({ pokemonData, pokemonDescription }) => {
             src={pokemonData.sprites.other["official-artwork"].front_default}
             alt={pokemonData.name}
           />
-          <img
-            className='pokemon-info-card__img-desktop'
-            // src={pokemonData.sprites.front_default}
-            src={
-              pokemonData.sprites.versions["generation-v"]["black-white"]
-                .animated.front_default
-            }
-            alt={pokemonData.name}
-          />
+
+          {pokemonData.sprites.versions["generation-v"]["black-white"].animated
+            .front_default !== null ? (
+            <img
+              className='pokemon-info-card__img-desktop'
+              src={
+                pokemonData.sprites.versions["generation-v"]["black-white"]
+                  .animated.front_default
+              }
+              alt={pokemonData.name}
+            />
+          ) : (
+            <img
+              lassName='pokemon-info-card__img-desktop'
+              src={
+                pokemonData.sprites.versions["generation-v"]["black-white"]
+                  .front_default
+              }
+              alt={pokemonData.name}
+            />
+          )}
         </div>
         <div className='pokemon-info-card__name'>{pokemonData.name}</div>
         <ul className='pokemon-info-card__types-list'>
           {pokemonData.types.map((item, index) => {
             return (
               <li className='pokemon-info-card__list-item' key={index}>
-                <div className='pokemon-info-card__type'>{item.type.name}</div>
+                <TypeBox typeName={item.type.name} />
               </li>
             );
           })}
         </ul>
         <ul className='pokemon-info-card__stats-list'>
           <li className='pokemon-info-card__stats-item'>
-            <div className='pokemon-info-card__stat-title'>Height</div>
+            <div
+              className='pokemon-info-card__stat-title'
+              style={{ color: defineTypeColor(pokemonData.types[0].type.name) }}
+            >
+              Height
+            </div>
             <div className='pokemon-info-card__stat-text'>
               {pokemonData.height / 10} m
             </div>
           </li>
           <li className='pokemon-info-card__list-item'>
-            <div className='pokemon-info-card__stat-title'>Weight</div>
+            <div
+              className='pokemon-info-card__stat-title'
+              style={{ color: defineTypeColor(pokemonData.types[0].type.name) }}
+            >
+              Weight
+            </div>
             <div className='pokemon-info-card__stat-text'>
               {pokemonData.weight / 10} kg
             </div>
           </li>
           <li className='pokemon-info-card__stats-item'>
-            <div className='pokemon-info-card__stat-title'>Base XP</div>
+            <div
+              className='pokemon-info-card__stat-title'
+              style={{ color: defineTypeColor(pokemonData.types[0].type.name) }}
+            >
+              Base XP
+            </div>
             <div className='pokemon-info-card__stat-text'>
               {pokemonData.base_experience} points
             </div>
@@ -116,7 +140,7 @@ const PokemonDetailCard = ({ pokemonData, pokemonDescription }) => {
             {pokemonData.abilities.map((item, index) => {
               return (
                 <li className='pokemon-info-card__list-item' key={index}>
-                  <div className='pokemon-info-card__ability'>
+                  <div className='pokemon-info-card__ability' style={{background: defineTypeColor(pokemonData.types[0].type.name)}}>
                     {item.ability.name}
                   </div>
                 </li>

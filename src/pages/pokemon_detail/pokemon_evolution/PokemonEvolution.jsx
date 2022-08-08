@@ -1,14 +1,10 @@
-import React, { useEffect, Suspense } from "react";
-
+import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 import fetchData from "../../../utils/fetchData";
-// import PokemonsList from "../../pokedex/pokedex_cards/PokemonsList";
-const PokemonsList = React.lazy(() =>
-  import("../../pokedex/pokedex_cards/PokemonsList")
-);
+import PokemonCard from "../../../components/pokedex_card/PokedexCard";
 
 const PokemonEvolution = ({ pokemonData, evolutionData, setEvolutionData }) => {
-  
   const pokemonNames = [];
 
   useEffect(() => {
@@ -17,7 +13,6 @@ const PokemonEvolution = ({ pokemonData, evolutionData, setEvolutionData }) => {
         `https://pokeapi.co/api/v2/pokemon-species/${pokemonData.id}/`
       );
       const secondResponse = await fetchData(response.data.evolution_chain.url);
-      
 
       pokemonNames.push(secondResponse.data.chain.species.name);
 
@@ -52,18 +47,32 @@ const PokemonEvolution = ({ pokemonData, evolutionData, setEvolutionData }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pokemonData]);
 
-  
+  if (!pokemonData) return <div>Loading...</div>;
 
   return (
     <div className='pokemon-evo'>
       <div className='pokemon-evo__evo-title'>Evolution</div>
-      <Suspense>
-      <PokemonsList
-        pokemonData={evolutionData}
-        listClassName='pokemon-evo__list'
-        className='pokemon-evo__evo-card'
-      />
-      </Suspense>
+      <ul className='pokemon-evo__list'>
+        {evolutionData.map((item, i) => {
+          return (
+            <li key={i} className='pokedex-cards__card-item'>
+              <Link
+                style={{
+                  width: `100%`,
+                  textDecoration: `none`,
+                  display: "flex",
+                  justifyContent: "center",
+                }}
+                to={`/pokedex/${item.name}`}
+              >
+                <PokemonCard className="pokemon-evo__evo-card" typeBoxClass = {'pokemon-evo__type'} pokemon={item} />
+              </Link>
+            </li>
+          );
+        })}
+      </ul>
+
+      {/* pokemon-evo__evo-card */}
     </div>
   );
 };

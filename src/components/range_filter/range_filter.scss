@@ -3,6 +3,10 @@
   align-items: center;
   flex-wrap: wrap;
 
+  &__block {
+    padding: 5px;
+  }
+
   &__text {
     font-weight: 600;
     font-size: rem(18);
@@ -20,7 +24,6 @@
     border-radius: $border-radius-small;
     width: 74px;
     height: 41px;
-    margin-right: 20px;
     padding: 10px;
     transition: all 0.1s linear;
 

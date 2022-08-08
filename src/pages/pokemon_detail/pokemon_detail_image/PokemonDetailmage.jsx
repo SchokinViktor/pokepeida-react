@@ -2,8 +2,8 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 
 import checkZero from "../../../utils/chekZero";
-import { LazyLoadImage } from 'react-lazy-load-image-component';
-import 'react-lazy-load-image-component/src/effects/opacity.css';
+import { pokemonsLimit } from "../../../utils/fetchAllPokemons";
+import "react-lazy-load-image-component/src/effects/opacity.css";
 
 const PokemonDetailmage = ({ pokemonData }) => {
   return (
@@ -13,20 +13,33 @@ const PokemonDetailmage = ({ pokemonData }) => {
       </div>
       <div className='pokemon-detail-img__img-holder'>
         <img
-          effect="blur"
+          effect='blur'
           height='500px'
           src={pokemonData.sprites.other["official-artwork"].front_default}
           alt={pokemonData.name}
         />
       </div>
+      <div className='pokemon-return'></div>
       <div className='pokemon-detail-img__btns'>
-        <NavLink to={pokemonData.id === 1? `/pokedex/${pokemonData.id}` : `/pokedex/${pokemonData.id -1}`}>
+        <NavLink
+          to={
+            pokemonData.id === 1
+              ? `/pokedex/${pokemonsLimit}`
+              : `/pokedex/${pokemonData.id - 1}`
+          }
+        >
           <button className='pokemon-detail-img__btn pokemon-detail-img__btn_left'>
             Prev
           </button>
         </NavLink>
 
-        <NavLink to={pokemonData.id === 500? `/pokedex/${pokemonData.id}` : `/pokedex/${pokemonData.id + 1}`}>
+        <NavLink
+          to={
+            pokemonData.id === pokemonsLimit
+              ? `/pokedex/${1}`
+              : `/pokedex/${pokemonData.id + 1}`
+          }
+        >
           <button className='pokemon-detail-img__btn pokemon-detail-img__btn_right'>
             Next
           </button>

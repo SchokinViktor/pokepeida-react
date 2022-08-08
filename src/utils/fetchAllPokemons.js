@@ -4,7 +4,7 @@ export const pokemonsLimit = 905;
 
 const FetchAllPokemons = async (setPokemonData) => {
   const response = await fetchData(
-    `https://pokeapi.co/api/v2/pokemon/?limit=${905}`
+    `https://pokeapi.co/api/v2/pokemon/?limit=${pokemonsLimit}`
   );
 
   const pokemonsArray = [];

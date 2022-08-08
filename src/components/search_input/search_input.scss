@@ -2,7 +2,7 @@
   max-width: 350px;
   position: relative;
 
-  @include md {
+  @include sm {
     max-width: 500px;
   }
 
@@ -28,7 +28,7 @@
       color: $grey-2;
     }
 
-    @include xl {
+    @include sm {
       padding: 25px 40px;
       border-radius: $border-radius;
       font-size: rem(20);

@@ -12,6 +12,9 @@ const Pokedex = () => {
   const [cardsPerPage, setCardsPerPage] = useState(12);
 
   useEffect(() => {
+    window.scrollTo({
+      top: 0,
+    });
     FetchAllPokemons(setAllPokemonData);
   }, []);
 

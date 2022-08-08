@@ -1,28 +1,32 @@
 import React from "react";
 
 import { addAdditionalClass } from "../../utils/addAdditionalClass.js";
-import { LazyLoadImage } from 'react-lazy-load-image-component';
-import 'react-lazy-load-image-component/src/effects/opacity.css';
+import TypeBox from "../type_box/TypeBox.jsx";
 
-const PokemonCard = ({ className = "", pokemon }) => {
+const PokemonCard = ({ className = "", typeBoxClass ,pokemon }) => {
   return (
     <div className={addAdditionalClass(className, "pokedex-card")}>
       <div className='pokedex-card__card-img'>
-        {/* <img
-          src={pokemon.sprites.other["official-artwork"].front_default}
-          alt={pokemon.name}
-        /> */}
-        {/* <img src={pokemon.sprites.other.home.front_default} alt={pokemon.name} /> */}
-        <img
-          
-         
-          className='pokedex-card__img-anim'
-          src={
-            pokemon.sprites.versions["generation-v"]["black-white"].animated
-              .front_default
-          }
-          alt={pokemon.name}
-        />
+        {pokemon.sprites.versions["generation-v"]["black-white"].animated
+          .front_default !== null ? (
+          <img
+            className='pokedex-card__img-anim'
+            src={
+              pokemon.sprites.versions["generation-v"]["black-white"].animated
+                .front_default
+            }
+            alt={pokemon.name}
+          />
+        ) : (
+          <img
+            className='pokedex-card__img-anim'
+            src={
+              pokemon.sprites.versions["generation-v"]["black-white"]
+                .front_default
+            }
+            alt={pokemon.name}
+          />
+        )}
       </div>
       <div className='pokedex-card__card-number'>№{pokemon.id}</div>
       <div className='pokedex-card__card-name'>{pokemon.name}</div>
@@ -30,7 +34,7 @@ const PokemonCard = ({ className = "", pokemon }) => {
         {pokemon.types.map((item, i) => {
           return (
             <li key={i} className='pokedex-card__type-item'>
-              <div className='pokedex-card__type'>{item.type.name}</div>
+              <TypeBox className = {typeBoxClass} typeName={item.type.name} />
             </li>
           );
         })}

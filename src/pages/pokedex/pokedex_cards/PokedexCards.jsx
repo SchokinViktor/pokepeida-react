@@ -1,6 +1,7 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-import PokemonsList from "./PokemonsList";
+import PokemonCard from "../../../components/pokedex_card/PokedexCard";
 import ThreeDButton from "../../../components/buttons/three_d_button/ThreeDButton";
 
 const PokedexCards = ({ pokemonData, setCardsPerPage, cardsPerPage }) => {
@@ -15,10 +16,25 @@ const PokedexCards = ({ pokemonData, setCardsPerPage, cardsPerPage }) => {
       {pokemonData.length !== 0 ? (
         <>
           <div className='container'>
-            <PokemonsList
-              pokemonData={pokemonData}
-              itemsPerPage={cardsPerPage}
-            />
+            <ul className='pokedex-cards__cards-list'>
+              {pokemonData.slice(0, cardsPerPage).map((item, i) => {
+                return (
+                  <li key={i} className='pokedex-cards__card-item'>
+                    <Link
+                      style={{
+                        width: `100%`,
+                        textDecoration: `none`,
+                        display: "flex",
+                        justifyContent: "center",
+                      }}
+                      to={`/pokedex/${item.name}`}
+                    >
+                      <PokemonCard pokemon={item} />
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
 
             {cardsPerPage < pokemonData.length && (
               <div className='pokedex-cards__btn-wrapper'>

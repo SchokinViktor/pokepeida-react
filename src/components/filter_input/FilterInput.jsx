@@ -25,7 +25,6 @@ const FilterInput = ({
         label={label}
         multiple={multiple}
         onChange={handleChange}
-        defaultValue='Asending'
         inputProps={{
           MenuProps: {
             disableScrollLock: true,
