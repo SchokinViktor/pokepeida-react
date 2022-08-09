@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { useParams, NavLink } from "react-router-dom";
+import { useParams, NavLink} from "react-router-dom";
 
 import PokemonEvolution from "./pokemon_evolution/PokemonEvolution";
 import PokemonDetailmage from "./pokemon_detail_image/PokemonDetailmage";
@@ -16,10 +16,10 @@ const PokemonDetail = () => {
   const [evolutionData, setEvolutionData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  const { name } = useParams();
+  const { id } = useParams();
 
   const getPokemonData = async () => {
-    const result = await fetchData(`https://pokeapi.co/api/v2/pokemon/${name}`);
+    const result = await fetchData(`https://pokeapi.co/api/v2/pokemon/${id}`);
     setPokemonData(result.data);
   };
 
@@ -27,15 +27,14 @@ const PokemonDetail = () => {
     const result = await fetchData(
       `https://pokeapi.co/api/v2/pokemon-species/${pokemonData.id}/`
     );
+
     let descriptionIndex = 0;
-    console.log(result);
     for (const textEntery of result.data.flavor_text_entries) {
       if (textEntery.language.name === "en") {
         break;
       }
       descriptionIndex++;
     }
-    console.log(descriptionIndex);
     setPokemonDescription(
       result.data.flavor_text_entries[descriptionIndex].flavor_text
     );
@@ -47,23 +46,45 @@ const PokemonDetail = () => {
       behavior: "smooth",
     });
     getPokemonData();
-    
-
     setIsLoading(false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [name]);
+  }, [id]);
 
   useEffect(() => {
     fetchDescription();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pokemonData]);
+
+  // const changeUrlParams = () => {
+  //   const currentLocation = window.location.toString();
+  //   const desiredLocation = currentLocation.replace(
+  //     /[\d\.]+$/,
+  //     pokemonData.name
+  //   );
+  //   console.log(window.location.pathname);
+  //   console.log(desiredLocation);
+  //   if (currentLocation !== desiredLocation) {
+  //     window.location.assign(desiredLocation);
+  //   }
+  // };
 
   if (!pokemonData || isLoading) return <div>Loading...</div>;
   if (pokemonData.sprites === undefined) return <div>Loading...</div>;
   if (!pokemonData.species.url === undefined) return <div>Loading...</div>;
   if (!evolutionData) return <div>Loading...</div>;
+  // defineTypeColor(pokemonData.types[0].type.name
   return (
-    <section className='pokemon-detail' style={{background: defineTypeColor(pokemonData.types[0].type.name) }}>
+    <section
+      className='pokemon-detail'
+      // style={{
+      //   background: `linear-gradient(270deg, ${defineTypeColor(
+      //     pokemonData.types[0].type.name
+      //   )} 54%, #FFDF34 46%)`,
+      // }}
+      style={{
+        background: defineTypeColor(pokemonData.types[0].type.name),
+      }}
+    >
       <div className='pokemon-detail__container container'>
         <div className='pokemon-detail__col'>
           <PokemonDetailCard

@@ -14,16 +14,12 @@
   }
 
   &__card-img {
+    max-width: 100px;
     width: 100%;
     position: absolute;
     left: 50%;
-    bottom: 190px;
+    bottom: 170px;
     transform: translateX(-50%);
-  }
-
-  &__img-anim {
-    max-width: 100px;
-    width: 100%;
   }
 
   &__card-number {

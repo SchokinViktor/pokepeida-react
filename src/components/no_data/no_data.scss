@@ -1,0 +1,11 @@
+.no-data {
+  font-size: rem(24);
+  color: $black-2;
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: 600;
+
+  @include xxl {
+    font-size: rem(48);
+  }
+}

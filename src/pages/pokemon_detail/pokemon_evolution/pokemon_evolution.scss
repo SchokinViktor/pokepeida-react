@@ -37,11 +37,8 @@
     max-width: 240px;
 
     .pokedex-card__card-img {
-      bottom: 130px;
-    }
-
-    .pokedex-card__img-anim {
       max-width: 70px;
+      bottom: 130px;
     }
 
     .pokedex-card__card-number {
@@ -65,4 +62,6 @@
       font-size: rem(14);
     }
   }
+
+  
 }

@@ -4,6 +4,7 @@ import { Bar } from "react-chartjs-2";
 import { Chart as ChartJS } from "chart.js/auto";
 import TypeBox from "../type_box/TypeBox";
 import { defineTypeColor } from "../../utils/defineTypeColor";
+import { definePokemonSprite } from "../../utils/definePokemonSprite";
 
 const PokemonDetailCard = ({ pokemonData, pokemonDescription }) => {
   const [statsData, setStatsData] = useState({});
@@ -56,32 +57,12 @@ const PokemonDetailCard = ({ pokemonData, pokemonDescription }) => {
     <div className='pokemon-info-card'>
       <div className='pokemon-info-card__container'>
         <div className='pokemon-info-card__img-holder'>
-          <img
-            className='pokemon-info-card__img-mobile'
-            src={pokemonData.sprites.other["official-artwork"].front_default}
-            alt={pokemonData.name}
-          />
-
-          {pokemonData.sprites.versions["generation-v"]["black-white"].animated
-            .front_default !== null ? (
-            <img
-              className='pokemon-info-card__img-desktop'
-              src={
-                pokemonData.sprites.versions["generation-v"]["black-white"]
-                  .animated.front_default
-              }
-              alt={pokemonData.name}
-            />
-          ) : (
-            <img
-              lassName='pokemon-info-card__img-desktop'
-              src={
-                pokemonData.sprites.versions["generation-v"]["black-white"]
-                  .front_default
-              }
-              alt={pokemonData.name}
-            />
-          )}
+          <div className='pokemon-info-card__img-mobile'>
+            {definePokemonSprite(pokemonData, false)}
+          </div>
+          <div className='pokemon-info-card__img-desktop'>
+            {definePokemonSprite(pokemonData)}
+          </div>
         </div>
         <div className='pokemon-info-card__name'>{pokemonData.name}</div>
         <ul className='pokemon-info-card__types-list'>
@@ -140,7 +121,14 @@ const PokemonDetailCard = ({ pokemonData, pokemonDescription }) => {
             {pokemonData.abilities.map((item, index) => {
               return (
                 <li className='pokemon-info-card__list-item' key={index}>
-                  <div className='pokemon-info-card__ability' style={{background: defineTypeColor(pokemonData.types[0].type.name)}}>
+                  <div
+                    className='pokemon-info-card__ability'
+                    style={{
+                      background: defineTypeColor(
+                        pokemonData.types[0].type.name
+                      ),
+                    }}
+                  >
                     {item.ability.name}
                   </div>
                 </li>

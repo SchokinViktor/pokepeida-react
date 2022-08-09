@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Radar } from "react-chartjs-2";
 // eslint-disable-next-line no-unused-vars
 import { Chart as ChartJS } from "chart.js/auto";
+import NoData from "../../../components/no_data/NoData";
 
 const PokemonDetailRadar = ({ pokemonData, evolutionData }) => {
   const [statsData, setStatsData] = useState({});
@@ -74,7 +75,11 @@ const PokemonDetailRadar = ({ pokemonData, evolutionData }) => {
     <div className='pokemon-detail-radar'>
       <div className='pokemon-detail-radar__title'>STaTs CoMpARISON</div>
       <div className='pokemon-detail-radar__wrapper'>
-        <Radar data={statsData} options={statsOptions} />
+        {statsData.datasets.length !== 0 ? (
+          <Radar data={statsData} options={statsOptions} />
+        ) : (
+          <NoData text={'No Stats Data'}/>
+        )}
       </div>
     </div>
   );

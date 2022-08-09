@@ -3,7 +3,7 @@ import { useState } from "react";
 
 import Logo from "../../assets/images/logo-header.png";
 import NavLogo from "../../assets/images/logo-footer.svg";
-import HomeIcon from "../../components/icons/HomeIcon";
+// import HomeIcon from "../../components/icons/HomeIcon";
 import PokedexIcon from "../../components/icons/PokedexIcon";
 
 const Header = () => {
@@ -26,19 +26,19 @@ const Header = () => {
           </NavLink>
           <div className='header__nav'>
             <ul className='header__nav-list'>
-              <li className='header__nav-item'>
+              {/* <li className='header__nav-item'>
                 <NavLink className='header__nav-link' to='/' onClick={closeNav}>
                   <HomeIcon className="header__link-icon" />
                   Home
                 </NavLink>
-              </li>
+              </li> */}
               <li className='header__nav-item'>
                 <NavLink
                   className='header__nav-link'
                   to='pokedex'
                   onClick={closeNav}
                 >
-                  <PokedexIcon className = 'header__link-icon' />
+                  <PokedexIcon className='header__link-icon' />
                   Pokedex
                 </NavLink>
               </li>
