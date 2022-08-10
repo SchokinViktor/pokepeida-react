@@ -35,7 +35,7 @@ const Header = () => {
               <li className='header__nav-item'>
                 <NavLink
                   className='header__nav-link'
-                  to='pokedex'
+                  to='/'
                   onClick={closeNav}
                 >
                   <PokedexIcon className='header__link-icon' />

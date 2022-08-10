@@ -4,13 +4,26 @@ import { Link } from "react-router-dom";
 import PokemonCard from "../../../components/pokedex_card/PokedexCard";
 import ThreeDButton from "../../../components/buttons/three_d_button/ThreeDButton";
 
+import { motion } from "framer-motion";
+
+const pokemonCardsAnim = {
+  hidden: {
+    x: 100,
+    opacity: 0,
+  },
+  visible: (custom) => ({
+    x: 0,
+    opacity: 1,
+    transition: { delay: custom * 0.1 },
+  }),
+};
+
 const PokedexCards = ({ pokemonData, setCardsPerPage, cardsPerPage }) => {
   const showMoreItems = () => {
     setCardsPerPage((prevValue) => prevValue + 12);
   };
 
-  if (!pokemonData) return <div>Loading...</div>;
-
+  let animationDelay = 0;
   return (
     <section className='pokedex-cards'>
       {pokemonData.length !== 0 ? (
@@ -18,8 +31,18 @@ const PokedexCards = ({ pokemonData, setCardsPerPage, cardsPerPage }) => {
           <div className='container'>
             <ul className='pokedex-cards__cards-list'>
               {pokemonData.slice(0, cardsPerPage).map((item, i) => {
+                ++animationDelay;
+                if(animationDelay > 3) animationDelay = 1
                 return (
-                  <li key={i} className='pokedex-cards__card-item'>
+                  <motion.li
+                    custom={animationDelay}
+                    initial='hidden'
+                    whileInView='visible'
+                    viewport={{once:true}}
+                    variants={pokemonCardsAnim}
+                    key={i}
+                    className='pokedex-cards__card-item'
+                  >
                     <Link
                       style={{
                         width: `100%`,
@@ -27,11 +50,11 @@ const PokedexCards = ({ pokemonData, setCardsPerPage, cardsPerPage }) => {
                         display: "flex",
                         justifyContent: "center",
                       }}
-                      to={`/pokedex/${item.name}`}
+                      to={`/${item.name}`}
                     >
                       <PokemonCard pokemon={item} />
                     </Link>
-                  </li>
+                  </motion.li>
                 );
               })}
             </ul>

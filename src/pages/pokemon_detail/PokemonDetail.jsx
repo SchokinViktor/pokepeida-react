@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { useParams, NavLink} from "react-router-dom";
+import { useParams, NavLink } from "react-router-dom";
 
 import PokemonEvolution from "./pokemon_evolution/PokemonEvolution";
 import PokemonDetailmage from "./pokemon_detail_image/PokemonDetailmage";
@@ -8,13 +8,27 @@ import fetchData from "../../utils/fetchData";
 import PokemonDetailCard from "../../components/pokemon_detail_card/PokemonDetailCard";
 import PokemonDetailRadar from "./pokemon_detail_radar/PokemonDetailRadar";
 import ThreeDButton from "../../components/buttons/three_d_button/ThreeDButton";
+import SplashScreen from "../../components/splash_screen/SplashScreen"
 import { defineTypeColor } from "../../utils/defineTypeColor";
+import { motion } from "framer-motion";
+
+const cardAnimation = {
+  hidden: {
+    x: 100,
+    opacity: 0,
+  },
+  visible: (custom) => ({
+    x: 0,
+    opacity: 1,
+    transition: { delay: custom * 0.2 },
+  }),
+};
 
 const PokemonDetail = () => {
   const [pokemonData, setPokemonData] = useState({});
   const [pokemonDescription, setPokemonDescription] = useState("");
   const [evolutionData, setEvolutionData] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+
 
   const { id } = useParams();
 
@@ -46,7 +60,7 @@ const PokemonDetail = () => {
       behavior: "smooth",
     });
     getPokemonData();
-    setIsLoading(false);
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
@@ -55,43 +69,29 @@ const PokemonDetail = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pokemonData]);
 
-  // const changeUrlParams = () => {
-  //   const currentLocation = window.location.toString();
-  //   const desiredLocation = currentLocation.replace(
-  //     /[\d\.]+$/,
-  //     pokemonData.name
-  //   );
-  //   console.log(window.location.pathname);
-  //   console.log(desiredLocation);
-  //   if (currentLocation !== desiredLocation) {
-  //     window.location.assign(desiredLocation);
-  //   }
-  // };
+  if (pokemonData.sprites === undefined) return <div><SplashScreen/></div>;
 
-  if (!pokemonData || isLoading) return <div>Loading...</div>;
-  if (pokemonData.sprites === undefined) return <div>Loading...</div>;
-  if (!pokemonData.species.url === undefined) return <div>Loading...</div>;
-  if (!evolutionData) return <div>Loading...</div>;
-  // defineTypeColor(pokemonData.types[0].type.name
   return (
     <section
       className='pokemon-detail'
-      // style={{
-      //   background: `linear-gradient(270deg, ${defineTypeColor(
-      //     pokemonData.types[0].type.name
-      //   )} 54%, #FFDF34 46%)`,
-      // }}
       style={{
         background: defineTypeColor(pokemonData.types[0].type.name),
       }}
     >
       <div className='pokemon-detail__container container'>
-        <div className='pokemon-detail__col'>
+        <motion.div
+          custom={1.5}
+          initial='hidden'
+          whileInView='visible'
+          viewport={{ once: true }}
+          variants={cardAnimation}
+          className='pokemon-detail__col'
+        >
           <PokemonDetailCard
             pokemonData={pokemonData}
             pokemonDescription={pokemonDescription}
           />
-        </div>
+        </motion.div>
         <div className='pokemon-detail__col'>
           <PokemonDetailmage pokemonData={pokemonData} />
           <PokemonEvolution
@@ -108,7 +108,7 @@ const PokemonDetail = () => {
         />
       </div>
       <div className='pokemon-detail__return-button'>
-        <NavLink to={`/pokedex`}>
+        <NavLink to={`/`}>
           <ThreeDButton buttonText='Return To Pokedex' />
         </NavLink>
       </div>

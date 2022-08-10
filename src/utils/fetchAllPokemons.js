@@ -17,7 +17,6 @@ const FetchAllPokemons = async (setPokemonData) => {
       return state;
     });
   });
-  console.log("call");
   return pokemonsArray;
 };
 
