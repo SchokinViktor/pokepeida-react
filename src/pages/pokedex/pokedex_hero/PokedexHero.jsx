@@ -2,7 +2,7 @@ import React from "react";
 
 import PokedexHeroImage from "../../../assets/images/pikachu-hero.png";
 import PokedexHeroIcon from "../../../assets/images/pokeball-icon-hero.svg";
-import ThreeDButton from "../../../components/buttons/three_d_button/ThreeDButton";
+// import ThreeDButton from "../../../components/buttons/three_d_button/ThreeDButton";
 import "react-lazy-load-image-component/src/effects/opacity.css";
 
 import { motion } from "framer-motion";
