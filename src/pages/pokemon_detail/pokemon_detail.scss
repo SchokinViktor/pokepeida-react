@@ -4,15 +4,14 @@
 
 .pokemon-detail {
 
-  padding: 320px 0 120px;
+  padding: 260px 0 120px;
   overflow: hidden;
 
   @include xl {
-    padding: 380px 0 120px;
   }
 
   @include xxl {
-    padding: 220px 0;
+    padding: 120px 0;
   }
 
 
@@ -24,7 +23,7 @@
       align-items: flex-end;
       justify-content: space-between;
       padding: 0 15px;
-      margin-bottom: 100px;
+      margin-bottom: 80px;
     }
   }
 
@@ -44,5 +43,16 @@
 
   &__return-button {
     text-align: center;
+
+    &_left {
+      position: absolute;
+      width: 100%;
+      top: 30px;
+
+      @include xxl {
+        text-align: left;
+        margin-bottom: 50px;
+      }
+    }
   }
 }

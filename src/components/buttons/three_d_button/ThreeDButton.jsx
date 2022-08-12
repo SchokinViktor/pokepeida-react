@@ -5,7 +5,7 @@ import { addAdditionalClass } from "../../../utils/addAdditionalClass";
 const ThreeDButton = ({ buttonText = '', className = '', onClick}) => {
   return (
     <button className={addAdditionalClass(className, 'btn')} onClick = {onClick}>
-      <span>{buttonText}</span>
+      <span className="btn-inner">{buttonText}</span>
     </button>
   );
 };

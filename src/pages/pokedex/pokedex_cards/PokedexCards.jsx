@@ -20,7 +20,7 @@ const pokemonCardsAnim = {
 
 const PokedexCards = ({ pokemonData, setCardsPerPage, cardsPerPage }) => {
   const showMoreItems = () => {
-    setCardsPerPage((prevValue) => prevValue + 12);
+    setCardsPerPage((prevValue) => prevValue + cardsPerPage);
   };
 
   let animationDelay = 0;
@@ -50,7 +50,7 @@ const PokedexCards = ({ pokemonData, setCardsPerPage, cardsPerPage }) => {
                         display: "flex",
                         justifyContent: "center",
                       }}
-                      to={`/${item.name}`}
+                      to={`/${item.id}`}
                     >
                       <PokemonCard pokemon={item} />
                     </Link>

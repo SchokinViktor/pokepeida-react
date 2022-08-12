@@ -8,10 +8,11 @@ const FilterInput = ({
   hasNoneOption = true,
   setValue,
 }) => {
-  const [values, setValues] = useState([]);
+  const [values, setOptionValues] = useState([]);
 
   const handleChange = (event) => {
-    setValues(event.target.value);
+    setOptionValues(event.target.value);
+
     setValue(event.target.value);
   };
 

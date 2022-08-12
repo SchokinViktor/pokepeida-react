@@ -3,7 +3,6 @@ import React from "react";
 import PokedexHeroImage from "../../../assets/images/pikachu-hero.png";
 import PokedexHeroIcon from "../../../assets/images/pokeball-icon-hero.svg";
 // import ThreeDButton from "../../../components/buttons/three_d_button/ThreeDButton";
-import "react-lazy-load-image-component/src/effects/opacity.css";
 
 import { motion } from "framer-motion";
 
@@ -28,7 +27,7 @@ const PokedexHero = () => {
             custom={1.5}
             initial='hidden'
             whileInView='visible'
-            viewport={{once:true}}
+            viewport={{ once: true }}
             variants={imgAnimation}
             className='pokedex-hero__img-holder'
           >
@@ -43,7 +42,7 @@ const PokedexHero = () => {
             custom={3}
             initial='hidden'
             whileInView='visible'
-            viewport={{once:true}}
+            viewport={{ once: true }}
             variants={imgAnimation}
             className='pokedex-hero__text-holder'
           >
@@ -52,7 +51,7 @@ const PokedexHero = () => {
               <span>Pokepedia!</span>
             </h1>
             <p className='pokedex-hero__text'>
-              The best tool for finding pokemon you are interested in!
+              A handy tool for finding pokemon you are interested in!
             </p>
             {/* <ThreeDButton
               buttonText='Explore Pokedex!'

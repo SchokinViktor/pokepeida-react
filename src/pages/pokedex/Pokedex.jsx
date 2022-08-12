@@ -4,19 +4,19 @@ import { useState } from "react";
 import PokedexHero from "./pokedex_hero/PokedexHero";
 import PokedexSearch from "./pokedex_search/PokedexSearch";
 import PokedexCards from "./pokedex_cards/PokedexCards";
-import FetchAllPokemons from "../../utils/fetchAllPokemons";
 import SplashScreen from "../../components/splash_screen/SplashScreen";
-import { pokemonsLimit } from "../../utils/fetchAllPokemons";
+import FetchAllPokemons, { pokemonsLimit } from "../../utils/fetchAllPokemons";
 
 const Pokedex = () => {
-  const [allPokemonData, setAllPokemonData] = useState([]);
   const [pokemonData, setPokemonData] = useState([]);
   const [cardsPerPage, setCardsPerPage] = useState(12);
+  const [allPokemonData, setAllPokemonData] = useState([]);
 
   useEffect(() => {
     window.scrollTo({
       top: 0,
     });
+
     FetchAllPokemons(setAllPokemonData);
   }, []);
 
@@ -34,6 +34,7 @@ const Pokedex = () => {
         setPokemonData={setPokemonData}
         setCardsPerPage={setCardsPerPage}
       />
+
       <PokedexCards
         pokemonData={pokemonData}
         setCardsPerPage={setCardsPerPage}

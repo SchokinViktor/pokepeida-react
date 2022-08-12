@@ -7,7 +7,6 @@ const FetchAllPokemons = async (setPokemonData) => {
     `https://pokeapi.co/api/v2/pokemon/?limit=${pokemonsLimit}`
   );
 
-  const pokemonsArray = [];
   response.data.results.map(async (item) => {
     const result = await fetchData(item.url);
 
@@ -17,7 +16,6 @@ const FetchAllPokemons = async (setPokemonData) => {
       return state;
     });
   });
-  return pokemonsArray;
 };
 
 export default FetchAllPokemons;

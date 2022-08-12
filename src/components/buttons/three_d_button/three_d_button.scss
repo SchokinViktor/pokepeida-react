@@ -5,7 +5,7 @@
   padding: 0;
   cursor: pointer;
   outline-offset: 4px;
-  
+
   span {
     display: block;
     padding: 16px 42px;
@@ -27,7 +27,7 @@
   outline: none;
 }
 
-.btn:hover  span {
+.btn:hover span {
   transform: translateY(-12px);
 }
 

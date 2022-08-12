@@ -45,13 +45,13 @@ const PokemonEvolution = ({ pokemonData, evolutionData, setEvolutionData }) => {
             );
           }
         }
-
         const addNewEvolutionChain = async (pokemonName) => {
+          await setEvolutionData([]);
           if (pokemonName !== null) {
             const thirdResponse = await fetchData(
               `https://pokeapi.co/api/v2/pokemon/${pokemonName}`
             );
-            setEvolutionData((state) => {
+            await setEvolutionData((state) => {
               state = [...state, thirdResponse.data];
               state.sort((a, b) => (a.order > b.order ? 1 : -1));
               return state;
@@ -63,15 +63,12 @@ const PokemonEvolution = ({ pokemonData, evolutionData, setEvolutionData }) => {
         });
       } else setIsEvolutionChainExist(false);
     };
+
     setIsEvolutionChainExist(true);
-    setEvolutionData([]);
     fetchEvolutionChain();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pokemonData]);
 
-  useEffect(() => {}, []);
-
-  if (!pokemonData) return <div>Loading...</div>;
   let animationDelay = 0;
 
   return (
@@ -87,7 +84,7 @@ const PokemonEvolution = ({ pokemonData, evolutionData, setEvolutionData }) => {
                 initial='hidden'
                 whileInView='visible'
                 variants={EvoCardAnim}
-                viewport={{once:true}}
+                viewport={{ once: true }}
                 key={i}
                 className='pokedex-cards__card-item'
               >
@@ -98,7 +95,7 @@ const PokemonEvolution = ({ pokemonData, evolutionData, setEvolutionData }) => {
                     display: "flex",
                     justifyContent: "center",
                   }}
-                  to={`/${item.name}`}
+                  to={`/${item.id}`}
                 >
                   <PokemonCard
                     className='pokemon-evo__evo-card'

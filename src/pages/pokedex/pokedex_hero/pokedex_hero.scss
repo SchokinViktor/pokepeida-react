@@ -1,10 +1,9 @@
 .pokedex-hero {
   background-color: $yellow;
-  padding: 80px 0 55px;
+  padding: 30px 0 10px;
 
   @include xl {
     background: linear-gradient(270deg, $body-color 35.94%, $yellow 35.95%);
-    padding: 120px 0;
   }
 
   &__container {
@@ -16,7 +15,8 @@
       display: flex;
       flex-direction: row-reverse;
       align-items: center;
-      justify-content: space-between;
+      justify-content: space-evenly;
+      padding: 30px 0 50px;
     }
   }
 
@@ -26,7 +26,7 @@
     max-width: 290px;
     margin: 0 auto 20px;
     height: 300px;
-    // animation: fadePika 1s ease-in-out; 
+    // animation: fadePika 1s ease-in-out;
 
     @include md {
       max-width: 360px;
@@ -40,21 +40,7 @@
     }
 
     @include xxl {
-      max-width: 700px;
-      
-    }
-  }
-
-  @keyframes fadePika {
-    0%{
-      transform: scale(1%);
-      opacity: 0;
-    }
-    50%{
-      opacity: 0.2;
-    }
-    100%{
-      opacity: 1;
+      max-width: 630px;
     }
   }
 
@@ -78,7 +64,8 @@
     }
 
     @include xxl {
-      max-width: 500px;
+      top: 185px;
+      max-width: 400px;
     }
   }
 

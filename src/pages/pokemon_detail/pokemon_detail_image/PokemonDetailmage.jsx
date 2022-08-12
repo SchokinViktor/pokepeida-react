@@ -36,6 +36,7 @@ const PokemonDetailmage = ({ pokemonData }) => {
         {definePokemonSprite(pokemonData, false)}
       </motion.div>
       <div className='pokemon-return'></div>
+
       <div className='pokemon-detail-img__btns'>
         <NavLink
           to={
@@ -44,7 +45,7 @@ const PokemonDetailmage = ({ pokemonData }) => {
               : `/${pokemonData.id - 1}`
           }
         >
-          <ThreeDButton buttonText='PREV' />
+          <ThreeDButton buttonText='PREV' className='pokemon-detail-img__btn' />
         </NavLink>
 
         <NavLink
@@ -54,7 +55,7 @@ const PokemonDetailmage = ({ pokemonData }) => {
               : `/${pokemonData.id + 1}`
           }
         >
-          <ThreeDButton buttonText='NEXT' />
+          <ThreeDButton buttonText='NEXT' className='pokemon-detail-img__btn' />
         </NavLink>
       </div>
     </div>

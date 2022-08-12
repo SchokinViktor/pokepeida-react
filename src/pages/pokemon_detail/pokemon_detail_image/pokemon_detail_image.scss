@@ -6,7 +6,7 @@
   &__pokemon-id {
     position: absolute;
     z-index: 1;
-    top: 90px;
+    top: 25px;
     font-size: rem(110);
     color: rgba(68, 68, 68, 0.4);
     right: 50%;
@@ -14,11 +14,6 @@
 
     @include md {
       font-size: rem(150);
-      top: 80px;
-    }
-
-    @include xl {
-      top: 150px;
     }
 
     @include xxl {
@@ -55,19 +50,15 @@
     position: absolute;
     justify-content: space-between;
     z-index: 2;
-    top: 350px;
+    top: 290px;
     right: 50%;
     transform: translateX(50%);
     max-width: 490px;
     width: 90%;
 
     @include sm {
-      top: 300px;
+      top: 250px;
       max-width: 580px;
-    }
-
-    @include xl {
-      top: 350px;
     }
 
     @include xxl {
@@ -78,35 +69,22 @@
   }
 
   &__btn {
-    background-color: $red-1;
-    border-radius: $border-radius-small;
-    border: none;
-    font-weight: 500;
-    font-size: rem(14);
-    letter-spacing: 0.1em;
-    color: $black-1;
-    color: #fff;
-    padding: 10px;
-    text-transform: uppercase;
-    box-shadow: $shadow;
-    cursor: pointer;
-    transition: all 0.1s linear;
+    span {
+      padding: 10px;
+      font-size: rem(14);
 
-    &:hover {
-      box-shadow: $shadow-red;
-    }
-    &:active {
-      background-color: $red-3;
-    }
+      @include sm {
+        padding: 10px 20px;
+        font-size: rem(16);
+      }
 
-    @include sm {
-      padding: 15px 30px;
-      border-radius: $border-radius;
-    }
+      @include md {
+        padding: 10px 30px;
+      }
 
-    @include xxl {
-      padding: 20px 40px;
-      font-size: rem(20);
+      @include xxl {
+        font-size: rem(18);
+      }
     }
   }
 }

@@ -62,7 +62,6 @@ const PokedexSearch = ({ allPokemonData, setPokemonData, setCardsPerPage }) => {
               label='Order'
               optionsArray={["Asending", "Decreasing"]}
               setValue={setSortValue}
-              // hasNoneOption = {false}
             />
           </div>
           <div className='pokedex-search__filter-range'>

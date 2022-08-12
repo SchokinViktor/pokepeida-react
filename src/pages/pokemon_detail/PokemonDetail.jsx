@@ -8,7 +8,7 @@ import fetchData from "../../utils/fetchData";
 import PokemonDetailCard from "../../components/pokemon_detail_card/PokemonDetailCard";
 import PokemonDetailRadar from "./pokemon_detail_radar/PokemonDetailRadar";
 import ThreeDButton from "../../components/buttons/three_d_button/ThreeDButton";
-import SplashScreen from "../../components/splash_screen/SplashScreen"
+import SplashScreen from "../../components/splash_screen/SplashScreen";
 import { defineTypeColor } from "../../utils/defineTypeColor";
 import { motion } from "framer-motion";
 
@@ -29,7 +29,6 @@ const PokemonDetail = () => {
   const [pokemonDescription, setPokemonDescription] = useState("");
   const [evolutionData, setEvolutionData] = useState([]);
 
-
   const { id } = useParams();
 
   const getPokemonData = async () => {
@@ -39,7 +38,7 @@ const PokemonDetail = () => {
 
   const fetchDescription = async () => {
     const result = await fetchData(
-      `https://pokeapi.co/api/v2/pokemon-species/${pokemonData.id}/`
+      `https://pokeapi.co/api/v2/pokemon-species/${id}/`
     );
 
     let descriptionIndex = 0;
@@ -69,7 +68,12 @@ const PokemonDetail = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pokemonData]);
 
-  if (pokemonData.sprites === undefined) return <div><SplashScreen/></div>;
+  if (pokemonData.sprites === undefined)
+    return (
+      <div>
+        <SplashScreen />
+      </div>
+    );
 
   return (
     <section
@@ -92,14 +96,24 @@ const PokemonDetail = () => {
             pokemonDescription={pokemonDescription}
           />
         </motion.div>
-        <div className='pokemon-detail__col'>
-          <PokemonDetailmage pokemonData={pokemonData} />
+        <motion.div
+          className='pokemon-detail__col'
+          custom={1.5}
+          initial='hidden'
+          whileInView='visible'
+          viewport={{ once: true }}
+          variants={cardAnimation}
+        >
+          <PokemonDetailmage
+            pokemonData={pokemonData}
+            setEvolutionData={setEvolutionData}
+          />
           <PokemonEvolution
             pokemonData={pokemonData}
             evolutionData={evolutionData}
             setEvolutionData={setEvolutionData}
           />
-        </div>
+        </motion.div>
       </div>
       <div className='pokemon-detail__radar-container container'>
         <PokemonDetailRadar
