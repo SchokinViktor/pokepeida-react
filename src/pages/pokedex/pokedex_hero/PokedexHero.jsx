@@ -6,7 +6,7 @@ import PokedexHeroIcon from '../../../assets/images/pokeball-icon-hero.svg';
 import { bottomSlideAnim } from '../../../utils/framerMotionAnims';
 // import ThreeDButton from "../../../components/buttons/three_d_button/ThreeDButton";
 
-const PokedexHero = () => {
+const PokedexHero = React.memo(() => {
   return (
     <section className='pokedex-hero'>
       <motion.div
@@ -42,6 +42,6 @@ const PokedexHero = () => {
       </motion.div>
     </section>
   );
-};
+});
 
 export default PokedexHero;

@@ -1,58 +1,34 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import axios from 'axios';
 
 import PokemonCard from '../../../components/pokedex_card/PokedexCard';
 import NoData from '../../../components/no_data/NoData';
 import { leftSlideAnim } from '../../../utils/framerMotionAnims';
+import Loader from '../../../components/loader/Loader';
+import { fetchEvolutionChain } from './fetchEvolutionChain';
+import SplashScreen from '../../../components/splash_screen/SplashScreen';
 
-const PokemonEvolution = ({ pokemonData, evolutionData, setEvolutionData }) => {
+const PokemonEvolution = ({
+  pokemonData,
+  evolutionData,
+  setEvolutionData,
+  loading,
+  setLoading,
+}) => {
   const pokemonNames = [];
   const [isEvolutionChainExist, setIsEvolutionChainExist] = useState(true);
 
+
   useEffect(() => {
-    const fetchEvolutionChain = async () => {
-      const response = await axios.get(
-        `https://pokeapi.co/api/v2/pokemon-species/${pokemonData.id}/`,
-      );
-      if (response.data.evolution_chain !== null) {
-        const secondResponse = await axios.get(response.data.evolution_chain.url);
-
-        pokemonNames.push(secondResponse.data.chain.species.name);
-        if (secondResponse.data.chain.evolves_to.length !== 0) {
-          pokemonNames.push(secondResponse.data.chain.evolves_to[0].species.name);
-
-          if (secondResponse.data.chain.evolves_to[0].evolves_to.length !== 0) {
-            pokemonNames.push(secondResponse.data.chain.evolves_to[0].evolves_to[0].species.name);
-          }
-        }
-        const addNewEvolutionChain = async (pokemonName) => {
-          await setEvolutionData([]);
-          if (pokemonName !== null) {
-            const thirdResponse = await axios.get(
-              `https://pokeapi.co/api/v2/pokemon/${pokemonName}`,
-            );
-            await setEvolutionData((state) => {
-              state = [...state, thirdResponse.data];
-              state.sort((a, b) => (a.order > b.order ? 1 : -1));
-              return state;
-            });
-          }
-        };
-        pokemonNames.forEach((name) => {
-          addNewEvolutionChain(name);
-        });
-      } else setIsEvolutionChainExist(false);
-    };
-
+    setLoading(true);
     setIsEvolutionChainExist(true);
-    fetchEvolutionChain();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    fetchEvolutionChain(pokemonData, pokemonNames, setEvolutionData, setIsEvolutionChainExist, setLoading);
   }, [pokemonData]);
 
   let animationDelay = 0;
 
+ 
   return (
     <div className='pokemon-evo'>
       <div className='pokemon-evo__evo-title'>Evolution</div>
@@ -90,8 +66,6 @@ const PokemonEvolution = ({ pokemonData, evolutionData, setEvolutionData }) => {
       ) : (
         <NoData text={'No Evolution Data'} />
       )}
-
-      {/* pokemon-evo__evo-card */}
     </div>
   );
 };

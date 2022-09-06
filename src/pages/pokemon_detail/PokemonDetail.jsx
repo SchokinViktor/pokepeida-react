@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { useState, useEffect } from 'react';
 import { useParams, NavLink } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -7,22 +7,28 @@ import axios from 'axios';
 import PokemonEvolution from './pokemon_evolution/PokemonEvolution';
 import PokemonDetailmage from './pokemon_detail_image/PokemonDetailmage';
 import PokemonDetailCard from '../../components/pokemon_detail_card/PokemonDetailCard';
-import PokemonDetailRadar from './pokemon_detail_radar/PokemonDetailRadar';
+// import PokemonDetailRadar from './pokemon_detail_radar/PokemonDetailRadar';
 import ThreeDButton from '../../components/buttons/three_d_button/ThreeDButton';
 import SplashScreen from '../../components/splash_screen/SplashScreen';
 import { defineTypeColor } from '../../utils/defineTypeColor';
 import { leftSlideAnim } from '../../utils/framerMotionAnims';
+import Loader from '../../components/loader/Loader';
+const PokemonDetailRadar = React.lazy(() => import('./pokemon_detail_radar/PokemonDetailRadar'));
 
 const PokemonDetail = () => {
   const [pokemonData, setPokemonData] = useState({});
   const [pokemonDescription, setPokemonDescription] = useState('');
   const [evolutionData, setEvolutionData] = useState([]);
+  const [pokemonDataLoading, setPokemonDataLoading] = useState(true);
+  const [descriptionDataLoading, setDescriptionDataLoading] = useState(true);
+  const [evolutionDataLoading, setEvolutionDataLoading] = useState(true);
 
   const { id } = useParams();
 
   const getPokemonData = async () => {
     const result = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
     setPokemonData(result.data);
+    setPokemonDataLoading(false);
   };
 
   const fetchDescription = async () => {
@@ -36,29 +42,24 @@ const PokemonDetail = () => {
       descriptionIndex++;
     }
     setPokemonDescription(result.data.flavor_text_entries[descriptionIndex].flavor_text);
+    setDescriptionDataLoading(false);
   };
 
   useEffect(() => {
+    setPokemonDataLoading(true);
     window.scrollTo({
       top: 0,
       behavior: 'smooth',
     });
     getPokemonData();
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   useEffect(() => {
+    setDescriptionDataLoading(true);
     fetchDescription();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pokemonData]);
 
-  if (pokemonData.sprites === undefined)
-    return (
-      <div>
-        <SplashScreen />
-      </div>
-    );
+  if (pokemonDataLoading && descriptionDataLoading && evolutionDataLoading) return <SplashScreen />;
 
   return (
     <section
@@ -77,16 +78,26 @@ const PokemonDetail = () => {
           <PokemonDetailCard pokemonData={pokemonData} pokemonDescription={pokemonDescription} />
         </div>
         <div className='pokemon-detail__col'>
-          <PokemonDetailmage pokemonData={pokemonData} setEvolutionData={setEvolutionData} />
+          <PokemonDetailmage
+            pokemonData={pokemonData}
+            setPokemonDataLoading={setPokemonDataLoading}
+            loading={evolutionDataLoading}
+          />
           <PokemonEvolution
             pokemonData={pokemonData}
             evolutionData={evolutionData}
             setEvolutionData={setEvolutionData}
+            loading={evolutionDataLoading}
+            setLoading={setEvolutionDataLoading}
           />
         </div>
       </motion.div>
       <div className='pokemon-detail__radar-container container'>
-        <PokemonDetailRadar pokemonData={pokemonData} evolutionData={evolutionData} />
+        {evolutionDataLoading && pokemonDataLoading ? (
+          <Loader />
+        ) : (
+          <PokemonDetailRadar pokemonData={pokemonData} evolutionData={evolutionData} />
+        )}
       </div>
       <div className='pokemon-detail__return-button'>
         <NavLink to={`/`}>
