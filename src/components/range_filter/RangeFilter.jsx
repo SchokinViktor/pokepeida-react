@@ -1,5 +1,5 @@
 import React from "react";
-import { pokemonsLimit } from "../../utils/fetchAllPokemons";
+import { pokemonsLimit } from "../../utils/getAllPokemons";
 
 const RangeFilter = ({ setMinRangeValue, setMaxRangeValue }) => {
   const handleMinValueChange = (event) => {

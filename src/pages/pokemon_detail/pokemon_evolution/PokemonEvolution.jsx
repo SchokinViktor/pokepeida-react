@@ -1,23 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import axios from 'axios';
 
-import fetchData from "../../../utils/fetchData";
-import PokemonCard from "../../../components/pokedex_card/PokedexCard";
-import NoData from "../../../components/no_data/NoData";
-
-import { motion } from "framer-motion";
-
-const EvoCardAnim = {
-  hidden: {
-    x: 100,
-    opacity: 0,
-  },
-  visible: (custom) => ({
-    x: 0,
-    opacity: 1,
-    transition: { delay: custom * 0.2 },
-  }),
-};
+import PokemonCard from '../../../components/pokedex_card/PokedexCard';
+import NoData from '../../../components/no_data/NoData';
+import { leftSlideAnim } from '../../../utils/framerMotionAnims';
 
 const PokemonEvolution = ({ pokemonData, evolutionData, setEvolutionData }) => {
   const pokemonNames = [];
@@ -25,31 +13,25 @@ const PokemonEvolution = ({ pokemonData, evolutionData, setEvolutionData }) => {
 
   useEffect(() => {
     const fetchEvolutionChain = async () => {
-      const response = await fetchData(
-        `https://pokeapi.co/api/v2/pokemon-species/${pokemonData.id}/`
+      const response = await axios.get(
+        `https://pokeapi.co/api/v2/pokemon-species/${pokemonData.id}/`,
       );
       if (response.data.evolution_chain !== null) {
-        const secondResponse = await fetchData(
-          response.data.evolution_chain.url
-        );
+        const secondResponse = await axios.get(response.data.evolution_chain.url);
 
         pokemonNames.push(secondResponse.data.chain.species.name);
         if (secondResponse.data.chain.evolves_to.length !== 0) {
-          pokemonNames.push(
-            secondResponse.data.chain.evolves_to[0].species.name
-          );
+          pokemonNames.push(secondResponse.data.chain.evolves_to[0].species.name);
 
           if (secondResponse.data.chain.evolves_to[0].evolves_to.length !== 0) {
-            pokemonNames.push(
-              secondResponse.data.chain.evolves_to[0].evolves_to[0].species.name
-            );
+            pokemonNames.push(secondResponse.data.chain.evolves_to[0].evolves_to[0].species.name);
           }
         }
         const addNewEvolutionChain = async (pokemonName) => {
           await setEvolutionData([]);
           if (pokemonName !== null) {
-            const thirdResponse = await fetchData(
-              `https://pokeapi.co/api/v2/pokemon/${pokemonName}`
+            const thirdResponse = await axios.get(
+              `https://pokeapi.co/api/v2/pokemon/${pokemonName}`,
             );
             await setEvolutionData((state) => {
               state = [...state, thirdResponse.data];
@@ -83,23 +65,21 @@ const PokemonEvolution = ({ pokemonData, evolutionData, setEvolutionData }) => {
                 custom={animationDelay}
                 initial='hidden'
                 whileInView='visible'
-                variants={EvoCardAnim}
+                variants={leftSlideAnim}
                 viewport={{ once: true }}
                 key={i}
-                className='pokedex-cards__card-item'
-              >
+                className='pokedex-cards__card-item'>
                 <Link
                   style={{
                     width: `100%`,
                     textDecoration: `none`,
-                    display: "flex",
-                    justifyContent: "center",
+                    display: 'flex',
+                    justifyContent: 'center',
                   }}
-                  to={`/${item.id}`}
-                >
+                  to={`/${item.id}`}>
                   <PokemonCard
                     className='pokemon-evo__evo-card'
-                    typeBoxClass={"pokemon-evo__type"}
+                    typeBoxClass={'pokemon-evo__type'}
                     pokemon={item}
                   />
                 </Link>
@@ -108,7 +88,7 @@ const PokemonEvolution = ({ pokemonData, evolutionData, setEvolutionData }) => {
           })}
         </ul>
       ) : (
-        <NoData text={"No Evolution Data"} />
+        <NoData text={'No Evolution Data'} />
       )}
 
       {/* pokemon-evo__evo-card */}
