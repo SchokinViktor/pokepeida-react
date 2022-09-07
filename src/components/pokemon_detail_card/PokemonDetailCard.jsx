@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { Bar } from "react-chartjs-2";
+import React, { useEffect, useState } from 'react';
+import { Bar } from 'react-chartjs-2';
 // eslint-disable-next-line no-unused-vars
-import { Chart as ChartJS } from "chart.js/auto";
-import TypeBox from "../type_box/TypeBox";
-import { defineTypeColor } from "../../utils/defineTypeColor";
-import { definePokemonSprite } from "../../utils/definePokemonSprite";
+import { Chart as ChartJS } from 'chart.js/auto';
+import TypeBox from '../type_box/TypeBox';
+import { defineTypeColor } from '../../utils/defineTypeColor';
+import DefinePokemonSprite from '../definePokemonSprite/DefinePokemonSprite';
 
 const PokemonDetailCard = ({ pokemonData, pokemonDescription }) => {
   const [statsData, setStatsData] = useState({});
@@ -15,12 +15,12 @@ const PokemonDetailCard = ({ pokemonData, pokemonDescription }) => {
       labels: pokemonData.stats.map((item) => item.stat.name.toUpperCase()),
       datasets: [
         {
-          label: "STATS",
+          label: 'STATS',
           data: pokemonData.stats.map((item) => item.base_stat),
           backgroundColor: [defineTypeColor(pokemonData.types[0].type.name)],
-          borderColor: "#787D83",
-          hoverBackgroundColor: "#FF5350",
-          pointBackgroundColor: "#FED601",
+          borderColor: '#787D83',
+          hoverBackgroundColor: '#FF5350',
+          pointBackgroundColor: '#FED601',
           tension: 0.05,
           pointRadius: 5,
         },
@@ -58,10 +58,10 @@ const PokemonDetailCard = ({ pokemonData, pokemonDescription }) => {
       <div className='pokemon-info-card__container'>
         <div className='pokemon-info-card__img-holder'>
           <div className='pokemon-info-card__img-mobile'>
-            {definePokemonSprite(pokemonData, false)}
+            <DefinePokemonSprite pokemon={pokemonData} ifPixel={false} />
           </div>
           <div className='pokemon-info-card__img-desktop'>
-            {definePokemonSprite(pokemonData)}
+            <DefinePokemonSprite pokemon={pokemonData} />
           </div>
         </div>
         <div className='pokemon-info-card__name'>{pokemonData.name}</div>
@@ -78,35 +78,26 @@ const PokemonDetailCard = ({ pokemonData, pokemonDescription }) => {
           <li className='pokemon-info-card__stats-item'>
             <div
               className='pokemon-info-card__stat-title'
-              style={{ color: defineTypeColor(pokemonData.types[0].type.name) }}
-            >
+              style={{ color: defineTypeColor(pokemonData.types[0].type.name) }}>
               Height
             </div>
-            <div className='pokemon-info-card__stat-text'>
-              {pokemonData.height / 10} m
-            </div>
+            <div className='pokemon-info-card__stat-text'>{pokemonData.height / 10} m</div>
           </li>
           <li className='pokemon-info-card__list-item'>
             <div
               className='pokemon-info-card__stat-title'
-              style={{ color: defineTypeColor(pokemonData.types[0].type.name) }}
-            >
+              style={{ color: defineTypeColor(pokemonData.types[0].type.name) }}>
               Weight
             </div>
-            <div className='pokemon-info-card__stat-text'>
-              {pokemonData.weight / 10} kg
-            </div>
+            <div className='pokemon-info-card__stat-text'>{pokemonData.weight / 10} kg</div>
           </li>
           <li className='pokemon-info-card__stats-item'>
             <div
               className='pokemon-info-card__stat-title'
-              style={{ color: defineTypeColor(pokemonData.types[0].type.name) }}
-            >
+              style={{ color: defineTypeColor(pokemonData.types[0].type.name) }}>
               Base XP
             </div>
-            <div className='pokemon-info-card__stat-text'>
-              {pokemonData.base_experience} points
-            </div>
+            <div className='pokemon-info-card__stat-text'>{pokemonData.base_experience} points</div>
           </li>
         </ul>
         <div className='pokemon-info-card__description'>
@@ -124,11 +115,8 @@ const PokemonDetailCard = ({ pokemonData, pokemonDescription }) => {
                   <div
                     className='pokemon-info-card__ability'
                     style={{
-                      background: defineTypeColor(
-                        pokemonData.types[0].type.name
-                      ),
-                    }}
-                  >
+                      background: defineTypeColor(pokemonData.types[0].type.name),
+                    }}>
                     {item.ability.name}
                   </div>
                 </li>

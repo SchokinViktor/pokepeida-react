@@ -1,6 +1,6 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 import { useState, useEffect } from 'react';
-import { useParams, NavLink } from 'react-router-dom';
+import { useParams, NavLink, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import axios from 'axios';
 
@@ -22,13 +22,19 @@ const PokemonDetail = () => {
   const [pokemonDataLoading, setPokemonDataLoading] = useState(true);
   const [descriptionDataLoading, setDescriptionDataLoading] = useState(true);
   const [evolutionDataLoading, setEvolutionDataLoading] = useState(true);
+  const navigate = useNavigate();
 
   const { id } = useParams();
 
   const getPokemonData = async () => {
-    const result = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
-    setPokemonData(result.data);
-    setPokemonDataLoading(false);
+    try {
+      const result = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
+      setPokemonData(result.data);
+    } catch (error) {
+      navigate('*');
+    } finally {
+      setPokemonDataLoading(false);
+    }
   };
 
   const fetchDescription = async () => {
