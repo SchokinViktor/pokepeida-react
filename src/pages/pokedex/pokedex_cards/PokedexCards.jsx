@@ -38,7 +38,7 @@ const PokedexCards = ({ pokemonData, setCardsPerPage, cardsPerPage }) => {
                         display: 'flex',
                         justifyContent: 'center',
                       }}
-                      to={`/${item.id}`}>
+                      to={`pokemon/${item.id}`}>
                       <PokemonCard pokemon={item} />
                     </Link>
                   </motion.li>

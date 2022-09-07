@@ -19,16 +19,20 @@ const PokemonEvolution = ({
   const pokemonNames = [];
   const [isEvolutionChainExist, setIsEvolutionChainExist] = useState(true);
 
-
   useEffect(() => {
     setLoading(true);
     setIsEvolutionChainExist(true);
-    fetchEvolutionChain(pokemonData, pokemonNames, setEvolutionData, setIsEvolutionChainExist, setLoading);
+    fetchEvolutionChain(
+      pokemonData,
+      pokemonNames,
+      setEvolutionData,
+      setIsEvolutionChainExist,
+      setLoading,
+    );
   }, [pokemonData]);
 
   let animationDelay = 0;
 
- 
   return (
     <div className='pokemon-evo'>
       <div className='pokemon-evo__evo-title'>Evolution</div>
@@ -52,7 +56,7 @@ const PokemonEvolution = ({
                     display: 'flex',
                     justifyContent: 'center',
                   }}
-                  to={`/${item.id}`}>
+                  to={`/pokemon/${item.id}`}>
                   <PokemonCard
                     className='pokemon-evo__evo-card'
                     typeBoxClass={'pokemon-evo__type'}

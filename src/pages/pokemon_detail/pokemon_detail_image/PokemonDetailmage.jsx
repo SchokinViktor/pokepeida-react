@@ -12,11 +12,11 @@ const PokemonDetailmage = ({ pokemonData, loading }) => {
   const navigate = useNavigate();
 
   const onNextPokemon = () => {
-    navigate(pokemonData.id === pokemonsLimit ? `/${1}` : `/${pokemonData.id + 1}`);
+    navigate(pokemonData.id === pokemonsLimit ? `/pokemon/${1}` : `/pokemon/${pokemonData.id + 1}`);
   };
 
   const onPrevPokemon = () => {
-    navigate(pokemonData.id === 1 ? `/${pokemonsLimit}` : `/${pokemonData.id - 1}`);
+    navigate(pokemonData.id === 1 ? `/pokemon/${pokemonsLimit}` : `/pokemon/${pokemonData.id - 1}`);
   };
 
   return (

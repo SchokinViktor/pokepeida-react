@@ -1,0 +1,23 @@
+.notfound {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+
+  &__text {
+    font-size: 64px;
+  }
+
+  &__status {
+    font-size: 84px;
+    color: $red-1;
+    font-weight: 700;
+    margin-bottom: 30px;
+  }
+
+  &__img-holder {
+    width: 200px;
+    margin: 0 auto;
+  }
+}
