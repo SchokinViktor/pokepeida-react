@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 
-import SearchInput from "../../../components/search_input/SearchInput";
-import FilterInput from "../../../components/filter_input/FilterInput";
-import RangeFilter from "../../../components/range_filter/RangeFilter";
+import SearchInput from '../../../components/search_input/SearchInput';
+import FilterInput from '../../../components/filter_input/FilterInput';
+import RangeFilter from '../../../components/range_filter/RangeFilter';
 import {
   handleRange,
   handleSearch,
@@ -10,25 +10,21 @@ import {
   handleFilterWeight,
   handleFilterTypes,
   handleSort,
-} from "../../../utils/filters";
-import {
-  typesArray,
-  heightArray,
-  weightArray,
-} from "../../../utils/filtersData";
+} from '../../../utils/filters';
+import { typesArray, heightArray, weightArray } from '../../../utils/filtersData';
 
 const PokedexSearch = ({ allPokemonData, setPokemonData, setCardsPerPage }) => {
-  const [searchValue, setSearchValue] = useState("");
-  const [heightValue, setHeightValue] = useState("");
-  const [weightValue, setWeightValue] = useState("");
-  const [sortValue, setSortValue] = useState("");
+  const [searchValue, setSearchValue] = useState('');
+  const [heightValue, setHeightValue] = useState('');
+  const [weightValue, setWeightValue] = useState('');
+  const [sortValue, setSortValue] = useState('');
   const [typesValue, setTypesValue] = useState([]);
   const [maxRangeValue, setMaxRangeValue] = useState();
   const [minRangeValue, setMinRangeValue] = useState();
 
   useEffect(() => {
     let result = allPokemonData;
-    setCardsPerPage(12);
+    setCardsPerPage(9);
     result = handleRange(minRangeValue, maxRangeValue, result);
     result = handleSearch(searchValue, result);
     result = handleFilterHeight(heightValue, result);
@@ -36,17 +32,7 @@ const PokedexSearch = ({ allPokemonData, setPokemonData, setCardsPerPage }) => {
     result = handleFilterTypes(typesValue, result);
     result = handleSort(sortValue, result);
     setPokemonData(result);
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [
-    searchValue,
-    heightValue,
-    weightValue,
-    typesValue,
-    sortValue,
-    maxRangeValue,
-    minRangeValue,
-  ]);
+  }, [searchValue, heightValue, weightValue, typesValue, sortValue, maxRangeValue, minRangeValue]);
 
   return (
     <section className='pokedex-search'>
@@ -60,15 +46,12 @@ const PokedexSearch = ({ allPokemonData, setPokemonData, setCardsPerPage }) => {
           <div className='pokedex-search__filter-order'>
             <FilterInput
               label='Order'
-              optionsArray={["Asending", "Decreasing"]}
+              optionsArray={['Asending', 'Decreasing']}
               setValue={setSortValue}
             />
           </div>
           <div className='pokedex-search__filter-range'>
-            <RangeFilter
-              setMinRangeValue={setMinRangeValue}
-              setMaxRangeValue={setMaxRangeValue}
-            />
+            <RangeFilter setMinRangeValue={setMinRangeValue} setMaxRangeValue={setMaxRangeValue} />
           </div>
         </div>
         <div className='pokedex-search__row'>
@@ -83,18 +66,10 @@ const PokedexSearch = ({ allPokemonData, setPokemonData, setCardsPerPage }) => {
               />
             </li>
             <li className='pokedex-search__filter-item'>
-              <FilterInput
-                setValue={setHeightValue}
-                label='Height'
-                optionsArray={heightArray}
-              />
+              <FilterInput setValue={setHeightValue} label='Height' optionsArray={heightArray} />
             </li>
             <li className='pokedex-search__filter-item'>
-              <FilterInput
-                label='Weight'
-                optionsArray={weightArray}
-                setValue={setWeightValue}
-              />
+              <FilterInput label='Weight' optionsArray={weightArray} setValue={setWeightValue} />
             </li>
           </ul>
         </div>

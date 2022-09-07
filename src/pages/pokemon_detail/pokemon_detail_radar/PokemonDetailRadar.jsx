@@ -1,15 +1,19 @@
-import React, { useState, useEffect } from "react";
-import { Radar } from "react-chartjs-2";
+import React, { useState, useEffect } from 'react';
+import { Radar } from 'react-chartjs-2';
 // eslint-disable-next-line no-unused-vars
-import { Chart as ChartJS } from "chart.js/auto";
-import NoData from "../../../components/no_data/NoData";
+import { Chart as ChartJS } from 'chart.js/auto';
+import NoData from '../../../components/no_data/NoData';
+import Loader from '../../../components/loader/Loader';
+
 
 const PokemonDetailRadar = ({ pokemonData, evolutionData }) => {
   const [statsData, setStatsData] = useState({});
   const [statsOptions, setStatsOptions] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const evolutionDatasets = evolutionData.map((pokemon, i) => {
+    setIsLoading(true);
+    const evolutionDatasets = evolutionData.map((pokemon) => {
       const pokemonStats = {
         label: pokemon.name.toUpperCase(),
         data: pokemon.stats.map((item) => item.base_stat),
@@ -18,20 +22,15 @@ const PokemonDetailRadar = ({ pokemonData, evolutionData }) => {
           `rgba(143, 174, 255, 0.35)`,
           `rgba(98, 223, 0, 0.35)`,
         ],
-        borderColor: [
-          `rgba(255,233,52, 1)`,
-          `rgba(143, 174, 255, 1)`,
-          `rgba(98, 223, 0, 1)`,
-        ],
-        pointBackgroundColor: "#446DFF",
-        pointHoverBackgroundColor: "#FF5350",
+        borderColor: [`rgba(255,233,52, 1)`, `rgba(143, 174, 255, 1)`, `rgba(98, 223, 0, 1)`],
+        pointBackgroundColor: '#446DFF',
+        pointHoverBackgroundColor: '#FF5350',
         tension: 0.05,
         pointRadius: 4,
       };
 
       return pokemonStats;
     });
-
     setStatsData({
       labels: pokemonData.stats.map((item) => item.stat.name.toUpperCase()),
       datasets: evolutionDatasets,
@@ -57,7 +56,7 @@ const PokemonDetailRadar = ({ pokemonData, evolutionData }) => {
           display: true,
           labels: {
             font: {
-              color: "#444444",
+              color: '#444444',
               size: 16,
               weight: 600,
             },
@@ -66,10 +65,10 @@ const PokemonDetailRadar = ({ pokemonData, evolutionData }) => {
       },
     });
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    setIsLoading(false);
   }, [evolutionData]);
 
-  if (!statsData.datasets) return <div>Loading...</div>;
+  if (isLoading) return <Loader />;
 
   return (
     <div className='pokemon-detail-radar'>
@@ -78,7 +77,7 @@ const PokemonDetailRadar = ({ pokemonData, evolutionData }) => {
         {statsData.datasets.length !== 0 ? (
           <Radar data={statsData} options={statsOptions} />
         ) : (
-          <NoData text={'No Stats Data'}/>
+          <NoData text={'No Stats Data'} />
         )}
       </div>
     </div>

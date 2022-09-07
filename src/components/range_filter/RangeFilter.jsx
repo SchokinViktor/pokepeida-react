@@ -1,7 +1,7 @@
-import React from "react";
-import { pokemonsLimit } from "../../utils/fetchAllPokemons";
+import React from 'react';
+import { pokemonsLimit } from '../../utils/getAllPokemons';
 
-const RangeFilter = ({ setMinRangeValue, setMaxRangeValue }) => {
+const RangeFilter = React.memo(({ setMinRangeValue, setMaxRangeValue }) => {
   const handleMinValueChange = (event) => {
     const { value } = event.target;
     setMinRangeValue(value);
@@ -34,6 +34,6 @@ const RangeFilter = ({ setMinRangeValue, setMaxRangeValue }) => {
       </div>
     </div>
   );
-};
+});
 
 export default RangeFilter;

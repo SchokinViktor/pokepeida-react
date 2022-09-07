@@ -2,7 +2,7 @@ import React from "react";
 
 import { addAdditionalClass } from "../../utils/addAdditionalClass";
 
-const PokedexSearch = ({
+const PokedexSearch = React.memo(({
   className = "",
   placeholder = "",
   setSearchValue,
@@ -21,6 +21,6 @@ const PokedexSearch = ({
       />
     </div>
   );
-};
+})
 
 export default PokedexSearch;

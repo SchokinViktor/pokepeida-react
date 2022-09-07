@@ -1,15 +1,15 @@
-import React, { useEffect } from "react";
-import { useState } from "react";
+import React, { useEffect } from 'react';
+import { useState } from 'react';
 
-import PokedexHero from "./pokedex_hero/PokedexHero";
-import PokedexSearch from "./pokedex_search/PokedexSearch";
-import PokedexCards from "./pokedex_cards/PokedexCards";
-import SplashScreen from "../../components/splash_screen/SplashScreen";
-import FetchAllPokemons, { pokemonsLimit } from "../../utils/fetchAllPokemons";
+import PokedexHero from './pokedex_hero/PokedexHero';
+import PokedexSearch from './pokedex_search/PokedexSearch';
+import PokedexCards from './pokedex_cards/PokedexCards';
+import SplashScreen from '../../components/splash_screen/SplashScreen';
+import getAllPokemons, { pokemonsLimit } from '../../utils/getAllPokemons';
 
 const Pokedex = () => {
   const [pokemonData, setPokemonData] = useState([]);
-  const [cardsPerPage, setCardsPerPage] = useState(12);
+  const [cardsPerPage, setCardsPerPage] = useState(9);
   const [allPokemonData, setAllPokemonData] = useState([]);
 
   useEffect(() => {
@@ -17,12 +17,12 @@ const Pokedex = () => {
       top: 0,
     });
 
-    FetchAllPokemons(setAllPokemonData);
+    getAllPokemons(setAllPokemonData);
   }, []);
 
-  useEffect(() => {
-    setPokemonData(allPokemonData);
-  }, [allPokemonData]);
+  // useEffect(() => {
+  //   setPokemonData(allPokemonData);
+  // }, [allPokemonData]);
 
   if (allPokemonData.length < pokemonsLimit) return <SplashScreen />;
 

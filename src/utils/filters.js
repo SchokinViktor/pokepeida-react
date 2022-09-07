@@ -1,5 +1,5 @@
 /* eslint-disable array-callback-return */
-import {pokemonsLimit} from './fetchAllPokemons'
+import {pokemonsLimit} from './getAllPokemons'
 
 export const handleSearch = (pokemonName, array) => {
   array = array.filter((item) => {
