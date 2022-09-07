@@ -1,13 +1,15 @@
-import React from "react";
+import React from 'react';
 
-import { addAdditionalClass } from "../../utils/addAdditionalClass.js";
-import { definePokemonSprite } from "../../utils/definePokemonSprite.js";
-import TypeBox from "../type_box/TypeBox.jsx";
+import { addAdditionalClass } from '../../utils/addAdditionalClass.js';
+import DefinePokemonSprite from '../definePokemonSprite/DefinePokemonSprite';
+import TypeBox from '../type_box/TypeBox.jsx';
 
-const PokemonCard = ({ className = "", typeBoxClass, pokemon }) => {
+const PokemonCard = ({ className = '', typeBoxClass, pokemon }) => {
   return (
-    <div className={addAdditionalClass(className, "pokedex-card")}>
-      <div className='pokedex-card__card-img'>{definePokemonSprite(pokemon)}</div>
+    <div className={addAdditionalClass(className, 'pokedex-card')}>
+      <div className='pokedex-card__card-img'>
+        <DefinePokemonSprite pokemon={pokemon} />
+      </div>
       <div className='pokedex-card__card-number'>№{pokemon.id}</div>
       <div className='pokedex-card__card-name'>{pokemon.name}</div>
       <ul className='pokedex-card__types-list'>

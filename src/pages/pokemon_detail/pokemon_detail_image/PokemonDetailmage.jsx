@@ -1,12 +1,11 @@
 import React from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 
 import checkZero from '../../../utils/chekZero';
 import { pokemonsLimit } from '../../../utils/getAllPokemons';
-import { definePokemonSprite } from '../../../utils/definePokemonSprite';
+import DefinePokemonSprite from '../../../components/definePokemonSprite/DefinePokemonSprite';
+import { bottomSlideAnim } from '../../../utils/framerMotionAnims';
 import ThreeDButton from '../../../components/buttons/three_d_button/ThreeDButton';
-import { leftSlideAnim } from '../../../utils/framerMotionAnims';
 
 const PokemonDetailmage = ({ pokemonData, loading }) => {
   const navigate = useNavigate();
@@ -22,15 +21,9 @@ const PokemonDetailmage = ({ pokemonData, loading }) => {
   return (
     <div className='pokemon-detail-img'>
       <div className='pokemon-detail-img__pokemon-id'>{checkZero(pokemonData.id)}</div>
-      <motion.div
-        custom={1.5}
-        initial='hidden'
-        whileInView='visible'
-        viewport={{ once: true }}
-        variants={leftSlideAnim}
-        className='pokemon-detail-img__img-holder'>
-        {definePokemonSprite(pokemonData, false)}
-      </motion.div>
+      <div className='pokemon-detail-img__img-holder'>
+        <DefinePokemonSprite pokemon={pokemonData} ifPixel={false} />
+      </div>
       <div className='pokemon-return'></div>
 
       <div className='pokemon-detail-img__btns'>

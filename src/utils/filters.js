@@ -1,5 +1,5 @@
 /* eslint-disable array-callback-return */
-import {pokemonsLimit} from './getAllPokemons'
+import { pokemonsLimit } from './getAllPokemons';
 
 export const handleSearch = (pokemonName, array) => {
   array = array.filter((item) => {
@@ -11,23 +11,23 @@ export const handleSearch = (pokemonName, array) => {
 };
 
 export const handleFilterHeight = (pokemonHeight, array) => {
-  if (pokemonHeight === "") {
+  if (pokemonHeight === '') {
     return array;
   } else {
     switch (pokemonHeight) {
-      case "Short":
+      case 'Short':
         array = array.filter((item) => {
           if (item.height / 10 <= 1.5) return item;
         });
         break;
 
-      case "Middle":
+      case 'Middle':
         array = array.filter((item) => {
           if (item.height / 10 > 1.5 && item.height / 10 < 3) return item;
         });
         break;
 
-      case "Large":
+      case 'Large':
         array = array.filter((item) => {
           if (item.height / 10 >= 3) return item;
         });
@@ -42,23 +42,23 @@ export const handleFilterHeight = (pokemonHeight, array) => {
 };
 
 export const handleFilterWeight = (pokemonWeight, array) => {
-  if (pokemonWeight === "") {
+  if (pokemonWeight === '') {
     return array;
   } else {
     switch (pokemonWeight) {
-      case "Light":
+      case 'Light':
         array = array.filter((item) => {
           if (item.weight / 10 <= 40) return item;
         });
         break;
 
-      case "Middle":
+      case 'Middle':
         array = array.filter((item) => {
           if (item.weight / 10 > 40 && item.weight / 10 < 200) return item;
         });
         break;
 
-      case "Heavy":
+      case 'Heavy':
         array = array.filter((item) => {
           if (item.weight / 10 >= 200) return item;
         });
@@ -77,9 +77,9 @@ export const handleFilterTypes = (pokemonTypes, array) => {
     return array;
   } else {
     array = array.filter((item) => {
-      let currentPokemonTypes = "";
+      let currentPokemonTypes = '';
       item.types.forEach((typeItem) => {
-        currentPokemonTypes += typeItem.type.name.toLowerCase() + " ";
+        currentPokemonTypes += typeItem.type.name.toLowerCase() + ' ';
       });
 
       let check = false;
@@ -101,11 +101,11 @@ export const handleFilterTypes = (pokemonTypes, array) => {
 export const handleSort = (inputValue, array) => {
   // eslint-disable-next-line array-callback-return
   switch (inputValue) {
-    case "Asending":
+    case 'Asending':
       array.sort((a, b) => (a.id > b.id ? 1 : -1));
       break;
 
-    case "Decreasing":
+    case 'Decreasing':
       array.sort((a, b) => (a.id < b.id ? 1 : -1));
       break;
 
