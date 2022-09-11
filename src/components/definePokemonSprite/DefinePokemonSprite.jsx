@@ -1,5 +1,6 @@
 import React, { forwardRef } from 'react';
 import questionImg from '../../assets/images/question.png';
+import Loader from '../loader/Loader';
 
 const DefinePokemonSprite = ({ pokemon, ifPixel = true }) => {
   const animPixelSprite =
