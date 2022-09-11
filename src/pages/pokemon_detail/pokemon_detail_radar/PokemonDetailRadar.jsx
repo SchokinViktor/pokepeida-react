@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Radar } from 'react-chartjs-2';
 // eslint-disable-next-line no-unused-vars
 import { Chart as ChartJS } from 'chart.js/auto';
 import NoData from '../../../components/no_data/NoData';
 import Loader from '../../../components/loader/Loader';
+import { PokemonDetailContext } from '../PokemonDetail';
 
-
-const PokemonDetailRadar = ({ pokemonData, evolutionData }) => {
+const PokemonDetailRadar = () => {
+  const { pokemonData, evolutionData } = useContext(PokemonDetailContext);
   const [statsData, setStatsData] = useState({});
   const [statsOptions, setStatsOptions] = useState({});
   const [isLoading, setIsLoading] = useState(true);

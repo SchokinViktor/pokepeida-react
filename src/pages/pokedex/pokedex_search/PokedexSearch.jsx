@@ -12,8 +12,12 @@ import {
   handleSort,
 } from '../../../utils/filters';
 import { typesArray, heightArray, weightArray } from '../../../utils/filtersData';
+import { useContext } from 'react';
+import { PokedexContext } from '../Pokedex';
 
-const PokedexSearch = ({ allPokemonData, setPokemonData, setCardsPerPage }) => {
+const PokedexSearch = () => {
+  const { allPokemonData, setPokemonData, setCardsPerPage } = useContext(PokedexContext);
+
   const [searchValue, setSearchValue] = useState('');
   const [heightValue, setHeightValue] = useState('');
   const [weightValue, setWeightValue] = useState('');

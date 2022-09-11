@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { createContext } from 'react';
 import { useState, useEffect } from 'react';
 import { useParams, NavLink, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -7,13 +7,14 @@ import axios from 'axios';
 import PokemonEvolution from './pokemon_evolution/PokemonEvolution';
 import PokemonDetailmage from './pokemon_detail_image/PokemonDetailmage';
 import PokemonDetailCard from '../../components/pokemon_detail_card/PokemonDetailCard';
-// import PokemonDetailRadar from './pokemon_detail_radar/PokemonDetailRadar';
+import PokemonDetailRadar from './pokemon_detail_radar/PokemonDetailRadar';
 import ThreeDButton from '../../components/buttons/three_d_button/ThreeDButton';
 import SplashScreen from '../../components/splash_screen/SplashScreen';
 import { defineTypeColor } from '../../utils/defineTypeColor';
 import { leftSlideAnim } from '../../utils/framerMotionAnims';
 import Loader from '../../components/loader/Loader';
-const PokemonDetailRadar = React.lazy(() => import('./pokemon_detail_radar/PokemonDetailRadar'));
+
+export const PokemonDetailContext = createContext();
 
 const PokemonDetail = () => {
   const [pokemonData, setPokemonData] = useState({});
@@ -73,38 +74,34 @@ const PokemonDetail = () => {
       style={{
         background: defineTypeColor(pokemonData.types[0].type.name),
       }}>
-      <motion.div
-        custom={1.5}
-        initial='hidden'
-        whileInView='visible'
-        viewport={{ once: true }}
-        variants={leftSlideAnim}
-        className='pokemon-detail__container container'>
-        <div className='pokemon-detail__col'>
-          <PokemonDetailCard pokemonData={pokemonData} pokemonDescription={pokemonDescription} />
+      <PokemonDetailContext.Provider
+        value={{
+          pokemonData,
+          pokemonDescription,
+          evolutionData,
+          setEvolutionData,
+          evolutionDataLoading,
+          setEvolutionDataLoading,
+        }}>
+        <motion.div
+          custom={1.5}
+          initial='hidden'
+          whileInView='visible'
+          viewport={{ once: true }}
+          variants={leftSlideAnim}
+          className='pokemon-detail__container container'>
+          <div className='pokemon-detail__col'>
+            <PokemonDetailCard />
+          </div>
+          <div className='pokemon-detail__col'>
+            <PokemonDetailmage />
+            <PokemonEvolution />
+          </div>
+        </motion.div>
+        <div className='pokemon-detail__radar-container container'>
+          {evolutionDataLoading && pokemonDataLoading ? <Loader /> : <PokemonDetailRadar />}
         </div>
-        <div className='pokemon-detail__col'>
-          <PokemonDetailmage
-            pokemonData={pokemonData}
-            setPokemonDataLoading={setPokemonDataLoading}
-            loading={evolutionDataLoading}
-          />
-          <PokemonEvolution
-            pokemonData={pokemonData}
-            evolutionData={evolutionData}
-            setEvolutionData={setEvolutionData}
-            loading={evolutionDataLoading}
-            setLoading={setEvolutionDataLoading}
-          />
-        </div>
-      </motion.div>
-      <div className='pokemon-detail__radar-container container'>
-        {evolutionDataLoading && pokemonDataLoading ? (
-          <Loader />
-        ) : (
-          <PokemonDetailRadar pokemonData={pokemonData} evolutionData={evolutionData} />
-        )}
-      </div>
+      </PokemonDetailContext.Provider>
       <div className='pokemon-detail__return-button'>
         <NavLink to={`/`}>
           <ThreeDButton buttonText='Return To Pokedex' />
