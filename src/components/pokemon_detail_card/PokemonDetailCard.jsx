@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Bar } from 'react-chartjs-2';
 // eslint-disable-next-line no-unused-vars
 import { Chart as ChartJS } from 'chart.js/auto';
 import TypeBox from '../type_box/TypeBox';
 import { defineTypeColor } from '../../utils/defineTypeColor';
 import DefinePokemonSprite from '../definePokemonSprite/DefinePokemonSprite';
+import { PokemonDetailContext } from '../../pages/pokemon_detail/PokemonDetail';
 
-const PokemonDetailCard = ({ pokemonData, pokemonDescription }) => {
+const PokemonDetailCard = () => {
+  const { pokemonData, pokemonDescription } = useContext(PokemonDetailContext);
   const [statsData, setStatsData] = useState({});
   const [statsOptions, setStatsOptions] = useState({});
 

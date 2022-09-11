@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
 import PokemonCard from '../../../components/pokedex_card/PokedexCard';
 import ThreeDButton from '../../../components/buttons/three_d_button/ThreeDButton';
 import { leftSlideAnim } from '../../../utils/framerMotionAnims';
+import { PokedexContext } from '../Pokedex';
 
-const PokedexCards = ({ pokemonData, setCardsPerPage, cardsPerPage }) => {
+const PokedexCards = () => {
+  const { pokemonData, setCardsPerPage, cardsPerPage } = useContext(PokedexContext);
+
   const showMoreItems = () => {
     console.log(cardsPerPage);
     setCardsPerPage((prevValue) => prevValue + 9);

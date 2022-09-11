@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import checkZero from '../../../utils/chekZero';
 import { pokemonsLimit } from '../../../utils/getAllPokemons';
 import DefinePokemonSprite from '../../../components/definePokemonSprite/DefinePokemonSprite';
-import { bottomSlideAnim } from '../../../utils/framerMotionAnims';
 import ThreeDButton from '../../../components/buttons/three_d_button/ThreeDButton';
+import { PokemonDetailContext } from '../PokemonDetail';
 
-const PokemonDetailmage = ({ pokemonData, loading }) => {
+const PokemonDetailmage = () => {
+  const { pokemonData, evolutionDataLoading } = useContext(PokemonDetailContext);
+
   const navigate = useNavigate();
 
   const onNextPokemon = () => {
@@ -31,14 +33,14 @@ const PokemonDetailmage = ({ pokemonData, loading }) => {
           buttonText='PREV'
           className='pokemon-detail-img__btn'
           onClick={onPrevPokemon}
-          disabled={loading}
+          disabled={evolutionDataLoading}
         />
 
         <ThreeDButton
           buttonText='NEXT'
           className='pokemon-detail-img__btn'
           onClick={onNextPokemon}
-          disabled={loading}
+          disabled={evolutionDataLoading}
         />
       </div>
     </div>

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, createContext } from 'react';
 import { useState } from 'react';
 
 import PokedexHero from './pokedex_hero/PokedexHero';
@@ -6,6 +6,8 @@ import PokedexSearch from './pokedex_search/PokedexSearch';
 import PokedexCards from './pokedex_cards/PokedexCards';
 import SplashScreen from '../../components/splash_screen/SplashScreen';
 import getAllPokemons, { pokemonsLimit } from '../../utils/getAllPokemons';
+
+export const PokedexContext = createContext();
 
 const Pokedex = () => {
   const [pokemonData, setPokemonData] = useState([]);
@@ -20,26 +22,16 @@ const Pokedex = () => {
     getAllPokemons(setAllPokemonData);
   }, []);
 
-  // useEffect(() => {
-  //   setPokemonData(allPokemonData);
-  // }, [allPokemonData]);
-
   if (allPokemonData.length < pokemonsLimit) return <SplashScreen />;
 
   return (
     <>
       <PokedexHero />
-      <PokedexSearch
-        allPokemonData={allPokemonData}
-        setPokemonData={setPokemonData}
-        setCardsPerPage={setCardsPerPage}
-      />
-
-      <PokedexCards
-        pokemonData={pokemonData}
-        setCardsPerPage={setCardsPerPage}
-        cardsPerPage={cardsPerPage}
-      />
+      <PokedexContext.Provider
+        value={{ pokemonData, setPokemonData, allPokemonData, setCardsPerPage, cardsPerPage }}>
+        <PokedexSearch />
+        <PokedexCards />
+      </PokedexContext.Provider>
     </>
   );
 };

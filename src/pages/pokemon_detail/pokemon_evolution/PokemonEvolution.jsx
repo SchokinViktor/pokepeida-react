@@ -1,33 +1,28 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
 import PokemonCard from '../../../components/pokedex_card/PokedexCard';
 import NoData from '../../../components/no_data/NoData';
 import { leftSlideAnim } from '../../../utils/framerMotionAnims';
-import Loader from '../../../components/loader/Loader';
 import { fetchEvolutionChain } from './fetchEvolutionChain';
-import SplashScreen from '../../../components/splash_screen/SplashScreen';
+import { PokemonDetailContext } from '../PokemonDetail';
 
-const PokemonEvolution = ({
-  pokemonData,
-  evolutionData,
-  setEvolutionData,
-  loading,
-  setLoading,
-}) => {
+const PokemonEvolution = () => {
+  const { pokemonData, evolutionData, setEvolutionData, setEvolutionDataLoading } =
+    useContext(PokemonDetailContext);
   const pokemonNames = [];
   const [isEvolutionChainExist, setIsEvolutionChainExist] = useState(true);
 
   useEffect(() => {
-    setLoading(true);
+    setEvolutionDataLoading(true);
     setIsEvolutionChainExist(true);
     fetchEvolutionChain(
       pokemonData,
       pokemonNames,
       setEvolutionData,
       setIsEvolutionChainExist,
-      setLoading,
+      setEvolutionDataLoading(false),
     );
   }, [pokemonData]);
 
