@@ -1,11 +1,15 @@
 body {
-    background-color: $body-color;
-    font-size: rem(18);
-    font-family: $rubik;
+  background-color: $body-color;
+  font-size: rem(18);
+  font-family: $rubik;
+}
+
+main {
+  overflow: hidden;
 }
 
 .container {
-    max-width: 1450px;
-    margin: 0 auto;
-    padding: 0 15px;
+  max-width: 1450px;
+  margin: 0 auto;
+  padding: 0 15px;
 }
