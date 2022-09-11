@@ -30,8 +30,6 @@ const PokemonDetail = () => {
       const result = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
       setPokemonData(result.data);
       setPokemonDataLoading(false);
-      console.log(pokemonData);
-      console.log('loading ENDED');
     } catch (error) {
       navigate('*');
     }
@@ -53,7 +51,6 @@ const PokemonDetail = () => {
 
   useEffect(() => {
     setPokemonDataLoading(true);
-    console.log('loading...');
     window.scrollTo({
       top: 0,
       behavior: 'smooth',

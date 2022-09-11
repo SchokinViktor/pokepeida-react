@@ -11,7 +11,6 @@ const PokedexCards = () => {
   const { pokemonData, setCardsPerPage, cardsPerPage } = useContext(PokedexContext);
 
   const showMoreItems = () => {
-    console.log(cardsPerPage);
     setCardsPerPage((prevValue) => prevValue + 9);
   };
 
