@@ -1,7 +1,6 @@
 import React, { createContext } from 'react';
 import { useState, useEffect } from 'react';
 import { useParams, NavLink, useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
 import axios from 'axios';
 
 import PokemonEvolution from './pokemon_evolution/PokemonEvolution';
@@ -11,7 +10,6 @@ import PokemonDetailRadar from './pokemon_detail_radar/PokemonDetailRadar';
 import ThreeDButton from '../../components/buttons/three_d_button/ThreeDButton';
 import SplashScreen from '../../components/splash_screen/SplashScreen';
 import { defineTypeColor } from '../../utils/defineTypeColor';
-import { leftSlideAnim } from '../../utils/framerMotionAnims';
 import Loader from '../../components/loader/Loader';
 
 export const PokemonDetailContext = createContext();
@@ -85,13 +83,7 @@ const PokemonDetail = () => {
           evolutionDataLoading,
           setEvolutionDataLoading,
         }}>
-        <motion.div
-          custom={1.5}
-          initial='hidden'
-          whileInView='visible'
-          viewport={{ once: true }}
-          variants={leftSlideAnim}
-          className='pokemon-detail__container container'>
+        <div className='pokemon-detail__container container'>
           <div className='pokemon-detail__col'>
             <PokemonDetailCard />
           </div>
@@ -99,7 +91,7 @@ const PokemonDetail = () => {
             <PokemonDetailmage />
             <PokemonEvolution />
           </div>
-        </motion.div>
+        </div>
         <div className='pokemon-detail__radar-container container'>
           {evolutionDataLoading && pokemonDataLoading ? <Loader /> : <PokemonDetailRadar />}
         </div>
