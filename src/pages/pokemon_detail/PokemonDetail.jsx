@@ -32,7 +32,7 @@ const PokemonDetail = () => {
       const result = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
       setPokemonData(result.data);
       setPokemonDataLoading(false);
-      console.log(pokemonData)
+      console.log(pokemonData);
       console.log('loading ENDED');
     } catch (error) {
       navigate('*');
@@ -73,11 +73,9 @@ const PokemonDetail = () => {
   return (
     <section
       className='pokemon-detail'
-      style={
-        {
-          // background: defineTypeColor(pokemonData.types[0].type.name),
-        }
-      }>
+      style={{
+        background: defineTypeColor(pokemonData.types[0].type.name),
+      }}>
       <PokemonDetailContext.Provider
         value={{
           pokemonData,
