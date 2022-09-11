@@ -5,7 +5,7 @@ export const fetchEvolutionChain = async (
   pokemonNames,
   setEvolutionData,
   setIsEvolutionChainExist,
-  setLoading
+  setLoading,
 ) => {
   const response = await axios.get(`https://pokeapi.co/api/v2/pokemon-species/${pokemonData.id}/`);
   if (response.data.evolution_chain !== null) {
@@ -34,5 +34,7 @@ export const fetchEvolutionChain = async (
       addNewEvolutionChain(name);
     });
   } else setIsEvolutionChainExist(false);
-  setLoading(false)
+  setTimeout(() => {
+    setLoading(false);
+  }, 500);
 };

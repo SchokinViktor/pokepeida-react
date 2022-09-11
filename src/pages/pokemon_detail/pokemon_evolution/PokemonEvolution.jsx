@@ -22,7 +22,7 @@ const PokemonEvolution = () => {
       pokemonNames,
       setEvolutionData,
       setIsEvolutionChainExist,
-      setEvolutionDataLoading(false),
+      setEvolutionDataLoading,
     );
   }, [pokemonData]);
 
