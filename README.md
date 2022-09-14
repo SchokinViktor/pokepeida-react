@@ -1,70 +1,42 @@
-# Getting Started with Create React App
+# <p align='center'>React-Pokemon</p>
+<p align='center'>React-Pokemon is a Pokemon-themed web application built using the React framework. Here you can search, filter, and then view detailed information about each of the desired Pokémon provided by [PokeAPI](https://pokeapi.co/).</p>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## App preview
+<p align = "center">
+<img align="center" width="1100" alt="preview![Uploading pika.png…]()
+" src="https://user-images.githubusercontent.com/102528148/190174790-ce2c3633-9f23-4655-914e-073c7d4220c4.gif">
+</p>
 
-## Available Scripts
+<img width="1263" alt="pikachu" src="https://user-images.githubusercontent.com/102528148/190163714-e7da83ea-1817-4b6b-b278-a99aaa7b966c.png">
+<img width="1066" alt="bulba" src="https://user-images.githubusercontent.com/102528148/190163805-623b4126-6b1e-4594-a9eb-1319b2981bc1.png">
 
-In the project directory, you can run:
+| <img width="282" height = '490' alt="aaaa" src="https://user-images.githubusercontent.com/102528148/190167627-f5c2e2f9-9963-4bbe-9938-88d8099971e1.png">|<img width="281" alt="piplup" height = '490' src="https://user-images.githubusercontent.com/102528148/190167072-8fb51ebb-bfde-43a7-853b-fb0be346ec20.png">| <img height = '490' width="279"  alt="mewtwo" src="https://user-images.githubusercontent.com/102528148/190164483-b9160d6b-1833-4a8e-ad04-4bc94931f252.png">   | <img height = '490' width="282" alt="ape" src="https://user-images.githubusercontent.com/102528148/190166301-b5fbfd69-f4f4-4bfb-8586-9a085158244f.png"> |
+|---|---|---|---|
 
-### `npm start`
+## Tech stack & libraries
+* React Framework
+* JS
+* SCSS
+* BEM methodology
+* Axios
+* Framer Motion
+* Material UI
+* Chart JS
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## To do
+- [x] Hero Section
+- [x] Pokedex Filters
+- [x] Pokedex Search
+- [x] Pokemons List
+- [x] Pokemon Detail Page
+- [x] Fetch and display evolution chain
+- [ ] Add searchbar in Pokemon Detail page
+- [x] Implement Chart JS
+- [ ] Make tabs for pokemon info card
+- [ ] Fix a bug on first Pokemon Detail page load
+- [ ] Implement the ability to add Pokemon to the list of favorites
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Used API
+<img src = "https://raw.githubusercontent.com/PokeAPI/media/master/logo/pokeapi_256.png">
+React-Pokemon uses [PokeAPI](https://pokeapi.co/).
+PokeAPI provides a RESTful API interface to highly detailed objects built from thousands of lines of data related to Pokémon.
